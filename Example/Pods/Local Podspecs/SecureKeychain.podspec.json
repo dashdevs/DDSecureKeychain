@@ -1,0 +1,26 @@
+{
+  "name": "SecureKeychain",
+  "version": "0.1.0",
+  "summary": "A short description of SecureKeychain.",
+  "homepage": "https://dashdevs.com",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "dashdevs llc": "hello@dashdevs.com"
+  },
+  "source": {
+    "git": "https://github.com/kirill.u@itomy.ch/SecureKeychain.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "SecureKeychain/Classes/**/*",
+  "dependencies": {
+    "KeychainAccess": [
+      "~> 3.1"
+    ]
+  }
+}

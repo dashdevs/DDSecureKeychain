@@ -1,0 +1,6 @@
+framework module SecureKeychain {
+  umbrella header "SecureKeychain-umbrella.h"
+
+  export *
+  module * { export * }
+}

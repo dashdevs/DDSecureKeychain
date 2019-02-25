@@ -9,34 +9,16 @@
 Pod::Spec.new do |s|
   s.name             = 'SecureKeychain'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of SecureKeychain.'
+  s.summary          = 'Simple wrapper for securing your keychain'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
-
-  s.homepage         = 'https://github.com/kirill.u@itomy.ch/SecureKeychain'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://dashdevs.com'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'kirill.u@itomy.ch' => 'kirill.u@itomy.ch' }
-  s.source           = { :git => 'https://github.com/kirill.u@itomy.ch/SecureKeychain.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { 'dashdevs llc' => 'hello@dashdevs.com' }
+  s.source           = { :git => 'https://bitbucket.org/itomych/securekeychain.git', :tag => s.version }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
+  s.swift_version = '4.2'
 
   s.source_files = 'SecureKeychain/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'SecureKeychain' => ['SecureKeychain/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'KeychainAccess', '~> 3.1'
 end

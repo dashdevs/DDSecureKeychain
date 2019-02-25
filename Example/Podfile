@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'SecureKeychain_Example' do
   pod 'SecureKeychain', :path => '../'
+  pod 'KeychainAccess', '~> 3.1'
 
   target 'SecureKeychain_Tests' do
     inherit! :search_paths

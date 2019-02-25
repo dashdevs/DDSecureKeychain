@@ -1,0 +1,6 @@
+framework module Pods_SecureKeychain_Example {
+  umbrella header "Pods-SecureKeychain_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
