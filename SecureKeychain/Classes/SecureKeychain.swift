@@ -132,7 +132,7 @@ public class SecureKeychain {
     /// Restore value from unencrypted keychain.
     ///
     /// - Parameter key: The key to restore from.
-    /// - Returns: Returns value in case of successfull restoration, otherwise returns nil.
+    /// - Returns: Returns value in case of successful restoration, otherwise returns nil.
     
     public func restoreValueFormUnencryptedKeychain(from key: String) -> String? {
         do {
@@ -156,7 +156,7 @@ public class SecureKeychain {
         return result
     }
 
-    /// Restore value form biometric encrypted keychain with specified localAuthentication context (LAContext after successful calling evaluatePolicy method can be passed here).
+    /// Restore value from biometric encrypted keychain with specified localAuthentication context (LAContext after successful calling evaluatePolicy method can be passed here).
     ///
     /// - Parameters:
     ///   - key: The key to restore from.
@@ -169,7 +169,7 @@ public class SecureKeychain {
         return result
     }
     
-    /// Restore value from encrypted keychaing without passing specified password or local authentication context. If value is encrypted native alert for specifing decrypting value will appear.
+    /// Restore value from encrypted keychain without passing specified password or local authentication context. If value is encrypted native alert for specifing decrypting value will appear.
     ///
     /// - Parameters:
     ///   - key: The key to restore from.
@@ -207,13 +207,13 @@ public class SecureKeychain {
     /// - Parameters:
     ///   - password: The password to check.
     ///   - key: The key for kecyhain item that is encrypted with password.
-    /// - Returns: Returns true if password is correct, otherwise - return false.
+    /// - Returns: Returns true if password is correct, otherwise - returns false.
     
     public func isPasswordCorrect(_ password: String, for key: String) -> Bool {
         return restorePasswordProtectedValue(for: key, with: password) != nil
     }
     
-    /// Remove key from keychain.
+    /// Remove keychain item from keychain.
     ///
     /// - Parameter key: The key value for keychain item.
     
