@@ -7,19 +7,36 @@
 import LocalAuthentication
 import KeychainAccess
 
-public enum KeychainKeys: String {
-    case testKey = "TestKey"
-    case passwordKey = "PasswordProtectedKey"
-    case biometricKey = "BiometricKey"
+public enum SecureKeychainError: Error {
+    case accessibilityNotSpecified
+    case authenticationPolicyNotSpecified
 }
 
 public class SecureKeychain {
     private var securePersistor: Keychain
+    private var defaultAccessibility: Accessibility?
+    private var defaultAuthenticationPolicy: AuthenticationPolicy?
     
-    public init() {
-        let bundleID = Bundle.main.bundleIdentifier!
+    /// Initialize SecureKeychain instance.
+    ///
+    /// - Parameter serviceID (optional): service associated with keychain items.
+    ///                                   If non-specified, bundleIdentifier will be used as serviceID.
+    ///   - accessibility (optional): The default accessibility value for keychain items.
+    ///   - authenticationPolicy (optional): The default authentication Policy for keychain items.
+    
+    public init(serviceID: String? = nil, accessibility: Accessibility? = nil, authenticationPolicy: AuthenticationPolicy? = nil) {
+        let bundleID = serviceID ?? Bundle.main.bundleIdentifier!
+        defaultAccessibility = accessibility
+        defaultAuthenticationPolicy = authenticationPolicy
         securePersistor = Keychain(service: bundleID)
     }
+    
+    // MARK: - Private
+    
+    /// Generates Keychain encrypted with provided passcode.
+    ///
+    /// - Parameter passcode: The passcode value.
+    /// - Returns: Keychain encrypted with provided passcode.
     
     private func passcodeEncryptedKeyChain(for passcode: String) -> Keychain {
         let localAuthenticationContext = LAContext()
@@ -28,9 +45,26 @@ public class SecureKeychain {
         return keychain
     }
     
-    private func setEncryptedValue(_ value: String, with policy: AuthenticationPolicy, for key: String, to keychain: Keychain) {
-        keychain.accessibility(.whenUnlocked, authenticationPolicy: [policy])[key] = value
+    /// Saving value to encrypted keychain.
+    ///
+    /// - Parameters:
+    ///   - value: The value to save.
+    ///   - key: The key to save value to.
+    ///   - keychain: The keychain to save.
+    ///   - accessibility: The accessibility level for keychain item.
+    ///   - policy: The authentication policy for keychain item.
+    
+    private func setEncryptedValue(_ value: String, for key: String, to keychain: Keychain, accessibility: Accessibility, with policy: AuthenticationPolicy) {
+        keychain.accessibility(accessibility, authenticationPolicy: [policy])[key] = value
     }
+    
+    /// Restore value from encrypted keychain.
+    ///
+    /// - Parameters:
+    ///   - keychain: The encrypted keychain to restore value form.
+    ///   - key: The key to restore value from.
+    /// - Returns: If value exists and successfullt restored return stored value.
+    ///            In any other cases (value not exists, password is incorrect) returns nil.
     
     private func restoreEncryptedValue(from keychain: Keychain, for key: String) -> String? {
         do {
@@ -43,33 +77,64 @@ public class SecureKeychain {
         }
     }
     
-    public func isKeychainEncrypted() -> Bool {
-#if targetEnvironment(simulator)
-        return true
-#else
-        let randomPassword = UUID().uuidString
-        return restorePasswordProtectedValue(for: KeychainKeys.passwordKey.rawValue, with: randomPassword) == nil
-#endif
-    }
+    // MARK: - Public
     
-    public func storeToPasswordProtectedKeychain(value: String, for key: String, password: String) {
+    /// Store value to password encrypted keychain.
+    ///
+    /// - Parameters:
+    ///   - value: The value to store.
+    ///   - key: The key to store value to.
+    ///   - password: The password for encryption.
+    ///   - accessibility (optional): The accessibility level for keychain item. If not specified default accessibility level will be used.
+    /// - Throws: Throws an error if both accessibility level for key and default accessibility level are not specified.
+    
+    public func storeToPasswordProtectedKeychain(value: String, for key: String, with password: String, accessibility: Accessibility? = nil) throws {
+        guard let accessability = accessibility ?? defaultAccessibility else {
+            throw SecureKeychainError.accessibilityNotSpecified
+        }
         try! securePersistor.remove(key)
         let keychain = passcodeEncryptedKeyChain(for: password)
-        setEncryptedValue(value, with: .applicationPassword, for: key, to: keychain)
+        setEncryptedValue(value, for: key, to: keychain, accessibility: accessability, with: .applicationPassword)
     }
     
-    public func storeToBiometricProtectedKeychain(value: String, for key: String) {
+    /// Store value to biometric encrypted keychain.
+    ///
+    /// - Parameters:
+    ///   - value: The value to store.
+    ///   - key: The key to store value to.
+    ///   - accessibility (optional): The accessibility level for keychain item. If not specified default accessibility level will be used.
+    ///   - authenticationPolicy (optional): The authentication policy for keychain item. If not specified default authentication policy level will be used.
+    /// - Throws: Throws an error if both accessibility level for key and default accessibility level are not specified, or both authentication policy level for key and default authentication policy level are not specified.
+    
+    public func storeToBiometricProtectedKeychain(value: String, for key: String, accessibility: Accessibility? = nil, authenticationPolicy: AuthenticationPolicy? = nil) throws {
+        guard let accessability = accessibility ?? defaultAccessibility else {
+             throw SecureKeychainError.accessibilityNotSpecified
+        }
+        guard let authenticationPolicy = authenticationPolicy ?? defaultAuthenticationPolicy else {
+            throw SecureKeychainError.authenticationPolicyNotSpecified
+        }
         try! securePersistor.remove(key)
         let localAuthenticationContext = LAContext()
         let keychainBio = securePersistor.authenticationContext(localAuthenticationContext)
-        setEncryptedValue(value, with: .touchIDAny, for: key, to: keychainBio)
+        setEncryptedValue(value, for: key, to: keychainBio, accessibility: accessability, with: authenticationPolicy)
     }
     
-    public func storeToUsualdKeychain(value: String, for key: String) {
+    /// Store value to unencrypted keychain.
+    ///
+    /// - Parameters:
+    ///   - value: The value to store.
+    ///   - key: The key to store value to.
+    
+    public func storeToUnencryptedKeychain(value: String, for key: String) {
         try! securePersistor.set(value, key: key)
     }
     
-    public func restoreUsualKeychainValue(from key: String) -> String? {
+    /// Restore value from unencrypted keychain.
+    ///
+    /// - Parameter key: The key to restore from.
+    /// - Returns: Returns value in case of successfull restoration, otherwise returns nil.
+    
+    public func restoreValueFormUnencryptedKeychain(from key: String) -> String? {
         do {
             let value = try securePersistor.get(key)
             return value
@@ -78,20 +143,39 @@ public class SecureKeychain {
         }
     }
     
+    /// Restore value from password encrypred keychain with specified password.
+    ///
+    /// - Parameters:
+    ///   - key: The key to restore from.
+    ///   - password: The password to decrypt keychain item.
+    /// - Returns: If value restoration was succefull returns restored value, otherwise returns nil.
+    
     public func restorePasswordProtectedValue(for key: String, with password: String) -> String? {
         let keychain = passcodeEncryptedKeyChain(for: password)
         let result = restoreEncryptedValue(from: keychain, for: key)
         return result
     }
+
+    /// Restore value form biometric encrypted keychain with specified localAuthentication context (LAContext after successful calling evaluatePolicy method can be passed here).
+    ///
+    /// - Parameters:
+    ///   - key: The key to restore from.
+    ///   - localAuthenticationContext: LAContext to decrypt keychain item.
+    /// - Returns: If value restoration was succefull returns restored value, otherwise returns nil.
     
-    public func restoreBiometricProtectedValue(for key: String) -> String? {
-        let localAuthenticationContext = LAContext()
+    public func restoreBiometricProtectedValue(for key: String, localAuthenticationContext: LAContext) -> String? {
         let keychainBio = securePersistor.authenticationContext(localAuthenticationContext)
         let result = restoreEncryptedValue(from: keychainBio, for: key)
         return result
     }
     
-    public func usualRestoreFromEncryptedKeychain(for key: String, onCompletion: @escaping ((String?) -> Void) ) {
+    /// Restore value from encrypted keychaing without passing specified password or local authentication context. If value is encrypted native alert for specifing decrypting value will appear.
+    ///
+    /// - Parameters:
+    ///   - key: The key to restore from.
+    ///   - onCompletion: Callback that will be called after decription ends. Callback will be called from DispatchQueue.global so be sure that you will handle result in correct way.
+    
+    public func restoreFromEncryptedKeychain(for key: String, onCompletion: @escaping ((String?) -> Void) ) {
         DispatchQueue.global().async { [unowned self] in
             do {
                 let value = try self.securePersistor.get(key)
@@ -103,9 +187,35 @@ public class SecureKeychain {
         }
     }
     
-    public func isPasswordCorrect(_ password: String) -> Bool {
-        return restorePasswordProtectedValue(for: KeychainKeys.passwordKey.rawValue, with: password) != nil
+    /// Service function to check is keychain encrypted.
+    ///
+    /// - Parameter key: key where value is encrypted with passcode.
+    /// - Returns: Returns true if keychain is encrypted, otherwise - false.
+    ///            Note: for simulator always returns true.
+    
+    public func isKeychainEncrypted(for key: String) -> Bool {
+        #if targetEnvironment(simulator)
+        return true
+        #else
+        let randomPassword = UUID().uuidString
+        return restorePasswordProtectedValue(for: key, with: randomPassword) == nil
+        #endif
     }
+    
+    /// Service function to check password correctness.
+    ///
+    /// - Parameters:
+    ///   - password: The password to check.
+    ///   - key: The key for kecyhain item that is encrypted with password.
+    /// - Returns: Returns true if password is correct, otherwise - return false.
+    
+    public func isPasswordCorrect(_ password: String, for key: String) -> Bool {
+        return restorePasswordProtectedValue(for: key, with: password) != nil
+    }
+    
+    /// Remove key from keychain.
+    ///
+    /// - Parameter key: The key value for keychain item.
     
     public func clearKey(_ key: String) {
         try! securePersistor.remove(key)

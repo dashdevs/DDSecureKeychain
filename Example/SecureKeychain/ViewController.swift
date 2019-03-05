@@ -7,6 +7,12 @@
 import UIKit
 import SecureKeychain
 
+public enum KeychainKeys: String {
+    case testKey = "TestKey"
+    case passwordKey = "PasswordProtectedKey"
+    case biometricKey = "BiometricKey"
+}
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var savedValue: UITextField!
@@ -18,22 +24,39 @@ class ViewController: UIViewController {
     @IBOutlet weak var isEncryptedKeychain: UITextField!
     @IBOutlet weak var isPasswordCorrect: UITextField!
     
-    private lazy var secureKeychain = SecureKeychain()
+    private lazy var secureKeychain = SecureKeychain(accessibility: .whenUnlocked, authenticationPolicy: .touchIDAny)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        savedValue.delegate = self
+        applicationPassword.delegate = self
+    }
     
     @IBAction func saveButtonTap(_ sender: Any) {
         let saveValue = (savedValue.text ?? "")
         var value = "Usual: " + saveValue
-        secureKeychain.storeToUsualdKeychain(value: value, for: KeychainKeys.testKey.rawValue)
+        secureKeychain.storeToUnencryptedKeychain(value: value, for: KeychainKeys.testKey.rawValue)
         
         value = "Password: " + saveValue
-        secureKeychain.storeToPasswordProtectedKeychain(value: value, for: KeychainKeys.passwordKey.rawValue, password: applicationPassword.text ?? "")
+        do {
+            try secureKeychain.storeToPasswordProtectedKeychain(value: value, for: KeychainKeys.passwordKey.rawValue, with: applicationPassword.text ?? "")
+        } catch {
+            showAlert(title: "Error while saving to password protected keychain", message: "Error: \(error)")
+            return
+        }
         
         value = "Biometric: " + saveValue
-        secureKeychain.storeToBiometricProtectedKeychain(value: value, for: KeychainKeys.biometricKey.rawValue)
+        do {
+            try secureKeychain.storeToBiometricProtectedKeychain(value: value, for: KeychainKeys.biometricKey.rawValue)
+        } catch {
+            showAlert(title: "Error while saving to biometric protected keychain", message: "Error: \(error)")
+            return
+        }
+        showAlert(title: "Saving successful!", message: "")
     }
     
     @IBAction func readUsusalKeychainTap(_ sender: Any) {
-        usualValue.text = secureKeychain.restoreUsualKeychainValue(from: KeychainKeys.testKey.rawValue)
+        usualValue.text = secureKeychain.restoreValueFormUnencryptedKeychain(from: KeychainKeys.testKey.rawValue)
     }
     
     @IBAction func readPasswordKeychainTap(_ sender: Any) {
@@ -41,7 +64,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func readBiometricProtectedTap(_ sender: Any) {
-        secureKeychain.usualRestoreFromEncryptedKeychain(for: KeychainKeys.biometricKey.rawValue) { [unowned self] (result) in
+        secureKeychain.restoreFromEncryptedKeychain(for: KeychainKeys.biometricKey.rawValue) { [unowned self] (result) in
             DispatchQueue.main.async { [unowned self] in
                 self.biometricProtectedValue.text = result
             }
@@ -49,7 +72,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func readFromSecureKeychainTap(_ sender: Any) {
-        secureKeychain.usualRestoreFromEncryptedKeychain(for: KeychainKeys.passwordKey.rawValue) { [unowned self] (result) in
+        secureKeychain.restoreFromEncryptedKeychain(for: KeychainKeys.passwordKey.rawValue) { [unowned self] (result) in
             DispatchQueue.main.async { [unowned self] in
                 self.usualReadValue.text = result
             }
@@ -57,11 +80,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func isKeychainEncryptedTap(_ sender: Any) {
-        isEncryptedKeychain.text = secureKeychain.isKeychainEncrypted() ? "Yes" : "No"
+        isEncryptedKeychain.text = secureKeychain.isKeychainEncrypted(for: KeychainKeys.passwordKey.rawValue) ? "Yes" : "No"
     }
     
     @IBAction func isPasswordCorrectTap(_ sender: Any) {
-        let passwordCorrect = secureKeychain.isPasswordCorrect(applicationPassword.text ?? "")
+        let passwordCorrect = secureKeychain.isPasswordCorrect(applicationPassword.text ?? "", for: KeychainKeys.passwordKey.rawValue)
         isPasswordCorrect.text = passwordCorrect ? "Correct" : "Not correct"
     }
     
@@ -71,6 +94,23 @@ class ViewController: UIViewController {
     
     @IBAction func clearFingerprintKeyTap(_ sender: Any) {
         secureKeychain.clearKey(KeychainKeys.biometricKey.rawValue)
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true)
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard textField == savedValue else {
+            textField.resignFirstResponder()
+            return true
+        }
+        applicationPassword.becomeFirstResponder()
+        return true
     }
 }
 

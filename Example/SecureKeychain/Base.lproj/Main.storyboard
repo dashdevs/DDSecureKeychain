@@ -29,201 +29,205 @@
         <!--Secure Keychain-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Secure Keychain" id="BYZ-38-t0r" customClass="ViewController" customModule="TestKeychain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Secure Keychain" id="BYZ-38-t0r" customClass="ViewController" customModule="SecureKeychain_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dnS-bz-XxT">
-                                <rect key="frame" x="20" y="84" width="335" height="345"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="fJV-mb-GjE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qg5-vU-uRa">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dnS-bz-XxT">
+                                        <rect key="frame" x="20" y="20" width="335" height="345"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value to store in keychain" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pne-h0-EcF">
-                                                <rect key="frame" x="0.0" y="0.0" width="277" height="30"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Qg5-vU-uRa">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Value to store in keychain" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pne-h0-EcF">
+                                                        <rect key="frame" x="0.0" y="0.0" width="293" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                    </textField>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6m-Fl-hzS">
+                                                        <rect key="frame" x="301" y="0.0" width="34" height="30"/>
+                                                        <state key="normal" title="Save"/>
+                                                        <connections>
+                                                            <action selector="saveButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cj9-hQ-4wn"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Application password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8wM-Vc-GBE">
+                                                <rect key="frame" x="0.0" y="38" width="335" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6m-Fl-hzS">
-                                                <rect key="frame" x="285" y="0.0" width="50" height="30"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SZr-m7-PqI">
+                                                <rect key="frame" x="0.0" y="76" width="335" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-Vr-GqH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="Keychain"/>
+                                                        <connections>
+                                                            <action selector="readUsusalKeychainTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BP5-ae-1fy"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="value from usual Keychain" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OO3-XL-OfR">
+                                                        <rect key="frame" x="99" y="0.0" width="236" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yMg-ao-IDe">
+                                                <rect key="frame" x="0.0" y="114" width="335" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2G-yu-0hH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="AppPassword"/>
+                                                        <connections>
+                                                            <action selector="readPasswordKeychainTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ktm-AE-Oro"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="value from password protected" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IGW-LP-9Vt">
+                                                        <rect key="frame" x="99" y="0.0" width="236" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ndo-Zq-SRw">
+                                                <rect key="frame" x="0.0" y="152" width="335" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cgr-Gu-531">
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="Fingerprint"/>
+                                                        <connections>
+                                                            <action selector="readBiometricProtectedTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8EN-2c-hYW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="value from fingerprint protected" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="odF-J5-8Dp">
+                                                        <rect key="frame" x="99" y="0.0" width="236" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pCb-ad-61O">
+                                                <rect key="frame" x="0.0" y="190" width="335" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L42-PD-9jQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="Just read"/>
+                                                        <connections>
+                                                            <action selector="readFromSecureKeychainTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dfT-Wx-x1L"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="read from secure keychain" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ywS-aS-sm3">
+                                                        <rect key="frame" x="99" y="0.0" width="236" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4a-U7-PrF">
+                                                <rect key="frame" x="0.0" y="228" width="335" height="3"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="pXm-de-7e7"/>
+                                                    <constraint firstAttribute="height" constant="3" id="b5m-lP-rYa"/>
                                                 </constraints>
-                                                <state key="normal" title="Save"/>
-                                                <connections>
-                                                    <action selector="saveButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cj9-hQ-4wn"/>
-                                                </connections>
-                                            </button>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sqK-6k-tRQ">
+                                                <rect key="frame" x="0.0" y="239" width="335" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8O-vI-H16">
+                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="30"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="Is keychain encrypted?"/>
+                                                        <connections>
+                                                            <action selector="isKeychainEncryptedTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U1R-7q-sQW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nep-5V-MvK">
+                                                        <rect key="frame" x="162" y="0.0" width="173" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XAH-FS-1Xu">
+                                                <rect key="frame" x="0.0" y="277" width="335" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XxJ-qI-pXC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="30"/>
+                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                        <state key="normal" title="Is password correct?"/>
+                                                        <connections>
+                                                            <action selector="isPasswordCorrectTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ize-JC-kaZ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m8X-T3-SDQ">
+                                                        <rect key="frame" x="162" y="0.0" width="173" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5uw-f4-5J1">
+                                                <rect key="frame" x="0.0" y="315" width="335" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeh-ql-Vv7">
+                                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
+                                                        <state key="normal" title="Clear password key"/>
+                                                        <connections>
+                                                            <action selector="clearPasswordKeyTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M74-rw-jtV"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffm-En-hlO">
+                                                        <rect key="frame" x="167.5" y="0.0" width="167.5" height="30"/>
+                                                        <state key="normal" title="Clear fingerprint key"/>
+                                                        <connections>
+                                                            <action selector="clearFingerprintKeyTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BwN-q9-100"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                    </stackView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Application password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8wM-Vc-GBE">
-                                        <rect key="frame" x="0.0" y="38" width="335" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SZr-m7-PqI">
-                                        <rect key="frame" x="0.0" y="76" width="335" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fw0-Vr-GqH">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="Tde-hw-2Kz"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                                <state key="normal" title="Keychain"/>
-                                                <connections>
-                                                    <action selector="readUsusalKeychainTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BP5-ae-1fy"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="value from usual Keychain" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OO3-XL-OfR">
-                                                <rect key="frame" x="105" y="0.0" width="230" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yMg-ao-IDe">
-                                        <rect key="frame" x="0.0" y="114" width="335" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2G-yu-0hH">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="KaM-Cn-c6u"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                                <state key="normal" title="AppPassword"/>
-                                                <connections>
-                                                    <action selector="readPasswordKeychainTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ktm-AE-Oro"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="value from password protected" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IGW-LP-9Vt">
-                                                <rect key="frame" x="105" y="0.0" width="230" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ndo-Zq-SRw">
-                                        <rect key="frame" x="0.0" y="152" width="335" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cgr-Gu-531">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="el2-GG-3Ah"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                                <state key="normal" title="Fingerprint"/>
-                                                <connections>
-                                                    <action selector="readBiometricProtectedTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8EN-2c-hYW"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="value from fingerprint protected" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="odF-J5-8Dp">
-                                                <rect key="frame" x="105" y="0.0" width="230" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pCb-ad-61O">
-                                        <rect key="frame" x="0.0" y="190" width="335" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L42-PD-9jQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="1ks-4G-4rs"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                                <state key="normal" title="Just read"/>
-                                                <connections>
-                                                    <action selector="readFromSecureKeychainTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dfT-Wx-x1L"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="read from secure keychain" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ywS-aS-sm3">
-                                                <rect key="frame" x="105" y="0.0" width="230" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x4a-U7-PrF">
-                                        <rect key="frame" x="0.0" y="228" width="335" height="3"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="3" id="b5m-lP-rYa"/>
+                                            <constraint firstItem="XxJ-qI-pXC" firstAttribute="width" secondItem="r8O-vI-H16" secondAttribute="width" id="8AK-pE-kZy"/>
+                                            <constraint firstItem="Cgr-Gu-531" firstAttribute="width" secondItem="Q2G-yu-0hH" secondAttribute="width" id="8IZ-3j-gao"/>
+                                            <constraint firstItem="L42-PD-9jQ" firstAttribute="width" secondItem="Q2G-yu-0hH" secondAttribute="width" id="dIr-fS-fG5"/>
+                                            <constraint firstItem="Q2G-yu-0hH" firstAttribute="width" secondItem="Fw0-Vr-GqH" secondAttribute="width" id="yl7-fp-WjE"/>
                                         </constraints>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="sqK-6k-tRQ">
-                                        <rect key="frame" x="0.0" y="239" width="335" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r8O-vI-H16">
-                                                <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                                <state key="normal" title="Is keychain encrypted?"/>
-                                                <connections>
-                                                    <action selector="isKeychainEncryptedTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U1R-7q-sQW"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nep-5V-MvK">
-                                                <rect key="frame" x="170" y="0.0" width="165" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XAH-FS-1Xu">
-                                        <rect key="frame" x="0.0" y="277" width="335" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XxJ-qI-pXC">
-                                                <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
-                                                <state key="normal" title="Is password correct?"/>
-                                                <connections>
-                                                    <action selector="isPasswordCorrectTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ize-JC-kaZ"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m8X-T3-SDQ">
-                                                <rect key="frame" x="170" y="0.0" width="165" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5uw-f4-5J1">
-                                        <rect key="frame" x="0.0" y="315" width="335" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeh-ql-Vv7">
-                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="30"/>
-                                                <state key="normal" title="Clear password key"/>
-                                                <connections>
-                                                    <action selector="clearPasswordKeyTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="M74-rw-jtV"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffm-En-hlO">
-                                                <rect key="frame" x="167.5" y="0.0" width="167.5" height="30"/>
-                                                <state key="normal" title="Clear fingerprint key"/>
-                                                <connections>
-                                                    <action selector="clearFingerprintKeyTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BwN-q9-100"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
                                     </stackView>
                                 </subviews>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="dnS-bz-XxT" firstAttribute="centerX" secondItem="fJV-mb-GjE" secondAttribute="centerX" id="IJF-kW-qVS"/>
+                                    <constraint firstItem="dnS-bz-XxT" firstAttribute="leading" secondItem="fJV-mb-GjE" secondAttribute="leading" constant="20" id="XOZ-HK-ZEJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="dnS-bz-XxT" secondAttribute="trailing" constant="20" id="ffd-Zi-LGb"/>
+                                    <constraint firstAttribute="bottom" secondItem="dnS-bz-XxT" secondAttribute="bottom" id="ljW-hr-xDL"/>
+                                    <constraint firstItem="dnS-bz-XxT" firstAttribute="top" secondItem="fJV-mb-GjE" secondAttribute="top" constant="20" id="xXA-dV-6Nq"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dnS-bz-XxT" secondAttribute="trailing" constant="20" id="8Hk-Fc-JoI"/>
-                            <constraint firstItem="dnS-bz-XxT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="K85-Db-raL"/>
-                            <constraint firstItem="dnS-bz-XxT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Tmb-dG-Ie6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fJV-mb-GjE" secondAttribute="bottom" id="0Tt-rA-hmP"/>
+                            <constraint firstItem="fJV-mb-GjE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="70l-S8-qnQ"/>
+                            <constraint firstItem="fJV-mb-GjE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dbT-WO-zsR"/>
+                            <constraint firstItem="fJV-mb-GjE" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tMc-7b-G3u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
