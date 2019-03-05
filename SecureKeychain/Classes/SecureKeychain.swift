@@ -33,24 +33,24 @@ public class SecureKeychain {
     
     // MARK: - Private
     
-    /// Generates Keychain encrypted with provided passcode.
+    /// Generates Keychain encrypted with provided password.
     ///
-    /// - Parameter passcode: The passcode value.
-    /// - Returns: Keychain encrypted with provided passcode.
+    /// - Parameter password: The password value.
+    /// - Returns: Keychain encrypted with provided password.
     
-    private func passcodeEncryptedKeyChain(for passcode: String) -> Keychain {
+    private func passwordEncryptedKeyChain(for password: String) -> Keychain {
         let localAuthenticationContext = LAContext()
-        localAuthenticationContext.setCredential(passcode.data(using: String.Encoding.utf8), type: .applicationPassword)
+        localAuthenticationContext.setCredential(password.data(using: String.Encoding.utf8), type: .applicationPassword)
         let keychain = securePersistor.authenticationContext(localAuthenticationContext)
         return keychain
     }
     
-    /// Saving value to encrypted keychain.
+    /// Storing value to encrypted keychain.
     ///
     /// - Parameters:
-    ///   - value: The value to save.
-    ///   - key: The key to save value to.
-    ///   - keychain: The keychain to save.
+    ///   - value: The value to store.
+    ///   - key: The key to store value to.
+    ///   - keychain: The keychain to store.
     ///   - accessibility: The accessibility level for keychain item.
     ///   - policy: The authentication policy for keychain item.
     
@@ -93,7 +93,7 @@ public class SecureKeychain {
             throw SecureKeychainError.accessibilityNotSpecified
         }
         try! securePersistor.remove(key)
-        let keychain = passcodeEncryptedKeyChain(for: password)
+        let keychain = passwordEncryptedKeyChain(for: password)
         setEncryptedValue(value, for: key, to: keychain, accessibility: accessability, with: .applicationPassword)
     }
     
@@ -151,7 +151,7 @@ public class SecureKeychain {
     /// - Returns: If value restoration was succefull returns restored value, otherwise returns nil.
     
     public func restorePasswordProtectedValue(for key: String, with password: String) -> String? {
-        let keychain = passcodeEncryptedKeyChain(for: password)
+        let keychain = passwordEncryptedKeyChain(for: password)
         let result = restoreEncryptedValue(from: keychain, for: key)
         return result
     }
@@ -189,7 +189,7 @@ public class SecureKeychain {
     
     /// Service function to check is keychain encrypted.
     ///
-    /// - Parameter key: key where value is encrypted with passcode.
+    /// - Parameter key: The keychain item with password encrypted value.
     /// - Returns: Returns true if keychain is encrypted, otherwise - false.
     ///            Note: for simulator always returns true.
     
