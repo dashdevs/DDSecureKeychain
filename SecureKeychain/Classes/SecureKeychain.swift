@@ -173,12 +173,14 @@ public class SecureKeychain {
     ///
     /// - Parameters:
     ///   - key: The key to restore from.
-    ///   - onCompletion: Callback that will be called after decription ends. Callback will be called from DispatchQueue.global so be sure that you will handle result in correct way.
+    //    - reason (optional): The reason to authentificate in native alert (only for read biometric encrypted values).
+    ///   - onCompletion: Callback that will be called after decryption ends. Callback will be called from DispatchQueue.global so be sure that you will handle result in correct way.
     
-    public func restoreFromEncryptedKeychain(for key: String, onCompletion: @escaping ((String?) -> Void) ) {
-        DispatchQueue.global().async { [unowned self] in
+    public func restoreFromEncryptedKeychain(for key: String, reason: String? = nil, onCompletion: @escaping ((String?) -> Void) ) {
+        let keychain = reason == nil ? securePersistor : securePersistor.authenticationPrompt(reason!)
+        DispatchQueue.global().async { [keychain] in
             do {
-                let value = try self.securePersistor.get(key)
+                let value = try keychain.get(key)
                 onCompletion(value)
             } catch {
                 onCompletion(nil)
@@ -194,12 +196,12 @@ public class SecureKeychain {
     ///            Note: for simulator always returns true.
     
     public func isKeychainEncrypted(for key: String) -> Bool {
-        #if targetEnvironment(simulator)
+#if targetEnvironment(simulator)
         return true
-        #else
+#else
         let randomPassword = UUID().uuidString
         return restorePasswordProtectedValue(for: key, with: randomPassword) == nil
-        #endif
+#endif
     }
     
     /// Service function to check password correctness.
@@ -219,5 +221,11 @@ public class SecureKeychain {
     
     public func clearKey(_ key: String) {
         try! securePersistor.remove(key)
+    }
+    
+    /// Remove all items from keychain.
+    
+    public func clearAllKeys() {
+        try! securePersistor.removeAll()
     }
 }
