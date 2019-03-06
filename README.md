@@ -1,9 +1,9 @@
 # SecureKeychain
 
 [![CI Status](https://img.shields.io/travis/kirill.u@itomy.ch/SecureKeychain.svg?style=flat)](https://travis-ci.org/kirill.u@itomy.ch/SecureKeychain)
-[![Version](https://img.shields.io/cocoapods/v/SecureKeychain.svg?style=flat)](https://cocoapods.org/pods/SecureKeychain)
-[![License](https://img.shields.io/cocoapods/l/SecureKeychain.svg?style=flat)](https://cocoapods.org/pods/SecureKeychain)
-[![Platform](https://img.shields.io/cocoapods/p/SecureKeychain.svg?style=flat)](https://cocoapods.org/pods/SecureKeychain)
+[![Version](https://img.shields.io/cocoapods/v/SecureKeychain.svg?style=flat)](https://bitbucket.org/itomych/securekeychain/)
+[![License](https://img.shields.io/cocoapods/l/SecureKeychain.svg?style=flat)](https://bitbucket.org/itomych/securekeychain/)
+[![Platform](https://img.shields.io/cocoapods/p/SecureKeychain.svg?style=flat)](https://bitbucket.org/itomych/securekeychain/)
 
 ## Example
 
