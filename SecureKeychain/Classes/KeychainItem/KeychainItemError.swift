@@ -6,7 +6,7 @@
 
 import Foundation
 
-public enum KeychainItemError: Error {
+enum KeychainItemError: Error {
     case alreadyExist
     case canNotCreateDataFromPassword
     case error(status: OSStatus)

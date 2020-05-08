@@ -6,12 +6,12 @@
 
 import Foundation
 
-public protocol KeychainItemStatusHandler {
+protocol KeychainItemStatusHandler {
     func handle(_ status: OSStatus) throws
 }
 
 extension KeychainItemStatusHandler {
-    public func handle(_ status: OSStatus) throws {
+    func handle(_ status: OSStatus) throws {
         switch status {
         case errSecDuplicateItem: throw KeychainItemError.alreadyExist
         case errSecItemNotFound: throw KeychainItemError.notFound

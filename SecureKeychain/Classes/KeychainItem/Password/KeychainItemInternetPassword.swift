@@ -7,7 +7,7 @@
 import Foundation
 
 public struct KeychainItemInternetPassword: KeychainItemPassword {
-    public let query: [String : Any]
+    var query: [String : Any]
     
     public init(server: String, account: String, accessGroup: String? = nil) {
         var query: [String: Any] = [:]
@@ -16,5 +16,12 @@ public struct KeychainItemInternetPassword: KeychainItemPassword {
         query[kSecAttrAccount as String] = account
         accessGroup.map { query[kSecAttrAccessGroup as String] = $0 }
         self.query = query
+    }
+}
+
+extension KeychainItemInternetPassword: KeychainItem {
+    public subscript(key: String?) -> String? {
+        get { return try? restore() }
+        set { try? save(newValue) }
     }
 }

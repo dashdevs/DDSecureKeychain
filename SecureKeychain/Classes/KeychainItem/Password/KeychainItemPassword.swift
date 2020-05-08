@@ -6,15 +6,18 @@
 
 import Foundation
 
-public protocol KeychainItemPassword: KeychainItemStatusHandler {
-    var query: [String : Any] { get }
-    func save(_ password: String) throws
+protocol KeychainItemPassword: KeychainItemStatusHandler {
+    var query: [String : Any] { get set }
+    func save(_ password: String?) throws
     func restore() throws -> String
-    func delete() throws
 }
 
 extension KeychainItemPassword {
-    public func save(_ password: String) throws {
+    func save(_ password: String?) throws {
+        guard let password = password else {
+            try delete()
+            return
+        }
         var query = self.query
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         let status = SecItemCopyMatching(query as CFDictionary, nil)
@@ -28,7 +31,7 @@ extension KeychainItemPassword {
         }
     }
     
-    public func restore() throws -> String {
+    func restore() throws -> String {
         var query = self.query
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         query[kSecReturnData as String] = true
@@ -43,13 +46,8 @@ extension KeychainItemPassword {
         }
         return password
     }
-    
-    public func delete() throws {
-        let status = SecItemDelete(query as CFDictionary)
-        try handle(status)
-    }
-    
-    func add(_ password: String) throws {
+        
+    private func add(_ password: String) throws {
         var query = self.query
         guard let passwordData = password.data(using: .utf8) else { throw KeychainItemError.canNotCreateDataFromPassword }
         query[kSecValueData as String] = passwordData
@@ -57,10 +55,15 @@ extension KeychainItemPassword {
         try handle(status)
     }
     
-    func update(_ password: String) throws {
+    private func update(_ password: String) throws {
         guard let passwordData = password.data(using: .utf8) else { throw KeychainItemError.canNotCreateDataFromPassword }
         let attributes: [String: Any] = [kSecValueData as String: passwordData]
         let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
+        try handle(status)
+    }
+    
+    private func delete() throws {
+        let status = SecItemDelete(query as CFDictionary)
         try handle(status)
     }
 }
