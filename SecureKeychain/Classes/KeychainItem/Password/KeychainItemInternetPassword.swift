@@ -9,10 +9,11 @@ import Foundation
 public struct KeychainItemInternetPassword: KeychainItemPassword {
     var query: [String : Any]
     
-    public init(server: String, accessGroup: String? = nil) {
+    public init(server: String, accessibility: KeychainItemAccessibility? = nil, accessGroup: String? = nil) {
         var query: [String: Any] = [:]
         query[kSecClass as String] = KeychainItemType.internetPassword.value
         query[kSecAttrServer as String] = server
+        accessibility.map { query[kSecAttrAccessible as String] = $0.value }
         accessGroup.map { query[kSecAttrAccessGroup as String] = $0 }
         self.query = query
     }
