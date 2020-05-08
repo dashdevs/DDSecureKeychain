@@ -7,5 +7,5 @@
 import Foundation
 
 public protocol KeychainItem {
-    subscript(key: String?) -> String? { get set }
+    subscript(key: String) -> String? { get set }
 }

@@ -8,31 +8,34 @@ import Foundation
 
 protocol KeychainItemPassword: KeychainItemStatusHandler {
     var query: [String : Any] { get set }
-    func save(_ password: String?) throws
-    func restore() throws -> String
+    func save(_ password: String?, for account: String) throws
+    func restore(for account: String) throws -> String
 }
 
 extension KeychainItemPassword {
-    func save(_ password: String?) throws {
+    func save(_ password: String?, for account: String) throws {
+        var query = self.query
+        query[kSecAttrAccount as String] = account
+        
         guard let password = password else {
-            try delete()
+            try delete(with: query)
             return
         }
-        var query = self.query
-        query[kSecMatchLimit as String] = kSecMatchLimitOne
+        
         let status = SecItemCopyMatching(query as CFDictionary, nil)
         switch status {
         case errSecSuccess:
-            try update(password)
+            try update(password, with: query)
         case errSecItemNotFound:
-            try add(password)
+            try add(password, with: query)
         default:
             try handle(status)
         }
     }
     
-    func restore() throws -> String {
+    func restore(for account: String) throws -> String {
         var query = self.query
+        query[kSecAttrAccount as String] = account
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         query[kSecReturnData as String] = true
         var item: CFTypeRef?
@@ -47,22 +50,22 @@ extension KeychainItemPassword {
         return password
     }
         
-    private func add(_ password: String) throws {
-        var query = self.query
+    private func add(_ password: String, with query: [String: Any]) throws {
+        var query = query
         guard let passwordData = password.data(using: .utf8) else { throw KeychainItemError.canNotCreateDataFromPassword }
         query[kSecValueData as String] = passwordData
         let status = SecItemAdd(query as CFDictionary, nil)
         try handle(status)
     }
     
-    private func update(_ password: String) throws {
+    private func update(_ password: String, with query: [String: Any]) throws {
         guard let passwordData = password.data(using: .utf8) else { throw KeychainItemError.canNotCreateDataFromPassword }
         let attributes: [String: Any] = [kSecValueData as String: passwordData]
         let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
         try handle(status)
     }
     
-    private func delete() throws {
+    private func delete(with query: [String: Any]) throws {
         let status = SecItemDelete(query as CFDictionary)
         try handle(status)
     }
