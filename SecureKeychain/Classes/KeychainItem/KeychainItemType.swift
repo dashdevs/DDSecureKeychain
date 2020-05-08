@@ -1,7 +1,7 @@
 //
 //  KeychainItemType.swift
 //
-//  Copyright © 2018 dashdevs.com. All rights reserved.
+//  Copyright © 2020 dashdevs.com. All rights reserved.
 //
 
 import Foundation

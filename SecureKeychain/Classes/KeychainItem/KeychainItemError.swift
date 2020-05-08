@@ -1,11 +1,13 @@
 //
 //  KeychainItemError.swift
 //
-//  Copyright © 2018 dashdevs.com. All rights reserved.
+//  Copyright © 2020 dashdevs.com. All rights reserved.
 //
 
 public enum KeychainItemError: Error {
+    case alreadyExist
     case canNotCreateDataFromPassword
     case error(status: OSStatus)
-    case itemAlreadyExist
+    case notFound
+    case unexpectedData
 }
