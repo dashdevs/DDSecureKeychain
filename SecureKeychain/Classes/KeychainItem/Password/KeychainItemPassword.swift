@@ -1,19 +1,19 @@
 //
-//  KeychainPassword.swift
+//  KeychainItemPassword.swift
 //
 //  Copyright © 2020 dashdevs.com. All rights reserved.
 //
 
 import Foundation
 
-public protocol KeychainPassword: KeychainItemStatusHandler {
+public protocol KeychainItemPassword: KeychainItemStatusHandler {
     var query: [String : Any] { get }
     func save(_ password: String) throws
     func restore() throws -> String
     func delete() throws
 }
 
-extension KeychainPassword {
+extension KeychainItemPassword {
     public func save(_ password: String) throws {
         var query = self.query
         query[kSecMatchLimit as String] = kSecMatchLimitOne
