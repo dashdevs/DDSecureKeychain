@@ -8,4 +8,5 @@ import Foundation
 
 public protocol KeychainItem {
     subscript(key: String) -> String? { get set }
+    var allKeys: [String] { get }
 }

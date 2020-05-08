@@ -317,29 +317,61 @@
                                     <action selector="removePasswordForLogin" destination="nU9-aX-0HN" eventType="touchUpInside" id="Q5J-S9-ajO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="817-Bw-dYh">
+                                <rect key="frame" x="126" y="324" width="123" height="30"/>
+                                <state key="normal" title="Restore All Logins"/>
+                                <connections>
+                                    <action selector="restoreAllLogins" destination="nU9-aX-0HN" eventType="touchUpInside" id="guC-bU-o4K"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hdL-mr-RvT">
+                                <rect key="frame" x="16" y="362" width="343" height="100"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="5AG-Ra-6Ed"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeq-HJ-10j">
+                                <rect key="frame" x="149.5" y="482" width="76" height="30"/>
+                                <state key="normal" title="Remove All"/>
+                                <connections>
+                                    <action selector="removeAll" destination="nU9-aX-0HN" eventType="touchUpInside" id="G1q-MW-03h"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="gjo-ev-veg" firstAttribute="top" secondItem="qC5-Q7-gvA" secondAttribute="bottom" constant="20" id="11D-bj-6sP"/>
+                            <constraint firstItem="qeq-HJ-10j" firstAttribute="centerX" secondItem="NgG-9l-gFv" secondAttribute="centerX" id="3aT-Vq-kse"/>
                             <constraint firstItem="Cx5-9T-dz6" firstAttribute="top" secondItem="bCj-YH-Xj6" secondAttribute="bottom" constant="20" id="4nN-nh-sqb"/>
+                            <constraint firstItem="hdL-mr-RvT" firstAttribute="top" secondItem="817-Bw-dYh" secondAttribute="bottom" constant="8" id="8wB-RE-8eO"/>
                             <constraint firstItem="qC5-Q7-gvA" firstAttribute="top" secondItem="I3d-wc-vrb" secondAttribute="top" constant="20" id="9M5-eQ-Pdt"/>
+                            <constraint firstItem="817-Bw-dYh" firstAttribute="top" secondItem="Cx5-9T-dz6" secondAttribute="bottom" constant="20" id="DdL-4n-kv0"/>
                             <constraint firstItem="gjo-ev-veg" firstAttribute="leading" secondItem="I3d-wc-vrb" secondAttribute="leading" constant="16" id="Dm1-0f-M70"/>
+                            <constraint firstItem="hdL-mr-RvT" firstAttribute="leading" secondItem="I3d-wc-vrb" secondAttribute="leading" constant="16" id="GSZ-Uv-ej8"/>
                             <constraint firstItem="qC5-Q7-gvA" firstAttribute="leading" secondItem="I3d-wc-vrb" secondAttribute="leading" constant="16" id="Ih2-yH-TQK"/>
                             <constraint firstItem="bCj-YH-Xj6" firstAttribute="leading" secondItem="Cz2-Hn-Iym" secondAttribute="trailing" constant="16" id="M6E-9i-0Dt"/>
                             <constraint firstItem="bCj-YH-Xj6" firstAttribute="centerY" secondItem="Cz2-Hn-Iym" secondAttribute="centerY" id="Np9-tj-Utx"/>
                             <constraint firstItem="VDy-QK-5gb" firstAttribute="top" secondItem="gjo-ev-veg" secondAttribute="bottom" constant="20" id="Oa2-gr-ed1"/>
                             <constraint firstItem="I3d-wc-vrb" firstAttribute="trailing" secondItem="bCj-YH-Xj6" secondAttribute="trailing" constant="16" id="UEe-96-vYV"/>
+                            <constraint firstItem="I3d-wc-vrb" firstAttribute="trailing" secondItem="hdL-mr-RvT" secondAttribute="trailing" constant="16" id="X0b-qo-uKO"/>
                             <constraint firstItem="VDy-QK-5gb" firstAttribute="centerX" secondItem="NgG-9l-gFv" secondAttribute="centerX" id="Zsq-Uw-weN"/>
                             <constraint firstItem="I3d-wc-vrb" firstAttribute="trailing" secondItem="qC5-Q7-gvA" secondAttribute="trailing" constant="16" id="bON-MO-U6D"/>
                             <constraint firstItem="I3d-wc-vrb" firstAttribute="trailing" secondItem="gjo-ev-veg" secondAttribute="trailing" constant="16" id="ht7-sO-fYB"/>
                             <constraint firstItem="Cz2-Hn-Iym" firstAttribute="leading" secondItem="I3d-wc-vrb" secondAttribute="leading" constant="16" id="igz-MD-3jj"/>
                             <constraint firstItem="Cz2-Hn-Iym" firstAttribute="top" secondItem="VDy-QK-5gb" secondAttribute="bottom" constant="20" id="oo8-YJ-d9K"/>
+                            <constraint firstItem="qeq-HJ-10j" firstAttribute="top" secondItem="hdL-mr-RvT" secondAttribute="bottom" constant="20" id="qJP-F8-qLH"/>
+                            <constraint firstItem="817-Bw-dYh" firstAttribute="centerX" secondItem="NgG-9l-gFv" secondAttribute="centerX" id="udJ-gV-TRi"/>
                             <constraint firstItem="Cx5-9T-dz6" firstAttribute="centerX" secondItem="NgG-9l-gFv" secondAttribute="centerX" id="yVi-cJ-ELA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I3d-wc-vrb"/>
                     </view>
                     <navigationItem key="navigationItem" title="Generic Password" id="rTD-zN-rDJ"/>
                     <connections>
+                        <outlet property="allLoginsTextView" destination="hdL-mr-RvT" id="96U-O4-1GV"/>
                         <outlet property="loginTextField" destination="qC5-Q7-gvA" id="lCj-EG-Xtl"/>
                         <outlet property="passwordForLoginTextField" destination="bCj-YH-Xj6" id="r53-2z-5vl"/>
                         <outlet property="passwordTextField" destination="gjo-ev-veg" id="7oa-b6-X9T"/>

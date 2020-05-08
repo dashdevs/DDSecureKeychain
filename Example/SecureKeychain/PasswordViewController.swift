@@ -11,6 +11,7 @@ class PasswordViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordForLoginTextField: UITextField!
+    @IBOutlet weak var allLoginsTextView: UITextView!
     
     var keychain: KeychainItem = KeychainItemGenericPassword(service: Bundle.main.bundleIdentifier!)
     
@@ -24,5 +25,16 @@ class PasswordViewController: UIViewController {
     
     @IBAction func removePasswordForLogin() {
         keychain[loginTextField.text!] = nil
+    }
+    
+    @IBAction func restoreAllLogins() {
+        allLoginsTextView.text = nil
+        keychain.allKeys.forEach {
+            allLoginsTextView.text = allLoginsTextView.text + "\"\($0)\"\n"
+        }
+    }
+    
+    @IBAction func removeAll() {
+        
     }
 }

@@ -10,6 +10,7 @@ protocol KeychainItemPassword: KeychainItemStatusHandler {
     var query: [String : Any] { get set }
     func save(_ password: String?, for account: String) throws
     func restore(for account: String) throws -> String
+    func restoreAllAccounts() throws -> [String]
 }
 
 extension KeychainItemPassword {
@@ -49,7 +50,22 @@ extension KeychainItemPassword {
         }
         return password
     }
-        
+    
+    func restoreAllAccounts() throws -> [String] {
+        var query = self.query
+        query[kSecMatchLimit as String] = kSecMatchLimitAll
+        query[kSecReturnAttributes as String] = true
+        var items: CFTypeRef?
+        let status = SecItemCopyMatching(query as CFDictionary, &items)
+        try handle(status)
+        guard
+            let existingItems = items as? [[String: Any]]
+            else {
+                throw KeychainItemError.unexpectedData
+        }
+        return existingItems.compactMap { $0[kSecAttrAccount as String] as? String }
+    }
+    
     private func add(_ password: String, with query: [String: Any]) throws {
         var query = query
         guard let passwordData = password.data(using: .utf8) else { throw KeychainItemError.canNotCreateDataFromPassword }

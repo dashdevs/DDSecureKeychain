@@ -19,6 +19,8 @@ public struct KeychainItemInternetPassword: KeychainItemPassword {
 }
 
 extension KeychainItemInternetPassword: KeychainItem {
+    public var allKeys: [String] { (try? restoreAllAccounts()) ?? [] }
+    
     public subscript(key: String) -> String? {
         get { return try? restore(for: key) }
         set { try? save(newValue, for: key) }
