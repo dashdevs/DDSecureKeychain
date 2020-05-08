@@ -13,14 +13,10 @@ public protocol KeychainItemStatusHandler {
 extension KeychainItemStatusHandler {
     public func handle(_ status: OSStatus) throws {
         switch status {
-        case errSecDuplicateItem:
-            throw KeychainItemError.alreadyExist
-        case errSecItemNotFound:
-            throw KeychainItemError.notFound
-        case noErr:
-            return
-        default:
-            throw KeychainItemError.error(status: status)
+        case errSecDuplicateItem: throw KeychainItemError.alreadyExist
+        case errSecItemNotFound: throw KeychainItemError.notFound
+        case noErr: return
+        default: throw KeychainItemError.error(status: status)
         }
     }
 }
