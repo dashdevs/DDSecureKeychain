@@ -1,7 +1,7 @@
 //
 //  PasswordViewController.swift
 //
-//  Copyright © 2019 dashdevs.com. All rights reserved.
+//  Copyright © 2020 dashdevs.com. All rights reserved.
 //
 
 import UIKit
