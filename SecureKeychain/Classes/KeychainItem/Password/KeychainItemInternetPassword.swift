@@ -28,14 +28,14 @@ extension KeychainItemInternetPassword: KeychainItem {
     }
     
     @discardableResult
-    public mutating func append(_ accessGroup: String) -> KeychainItemInternetPassword {
+    public mutating func append(_ accessGroup: String?) -> KeychainItemInternetPassword {
         query[kSecAttrAccessGroup as String] = accessGroup
         return self
     }
     
     @discardableResult
-    public mutating func append(_ accessibility: KeychainItemAccessibility) -> KeychainItemInternetPassword {
-        query[kSecAttrAccessible as String] = accessibility.value
+    public mutating func append(_ accessibility: KeychainItemAccessibility?) -> KeychainItemInternetPassword {
+        query[kSecAttrAccessible as String] = accessibility?.value
         return self
     }
 }
