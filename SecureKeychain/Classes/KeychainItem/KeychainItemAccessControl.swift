@@ -6,54 +6,39 @@
 
 import Foundation
 
-public struct KeychainItemAccessControl {
-    public enum Constraint {
-        case biometryAny
-        case biometryCurrentSet
-        case devicePasscode
-        case userPresence
-        
-        var value: SecAccessControlCreateFlags {
-            switch self {
-            case .biometryAny:
-                if #available(iOS 11.3, *) {
-                    return .biometryAny
-                } else {
-                    return .touchIDAny
-                }
-            case .biometryCurrentSet:
-                if #available(iOS 11.3, *) {
-                    return .biometryCurrentSet
-                } else {
-                    return .touchIDCurrentSet
-                }
-            case .devicePasscode: return .devicePasscode
-            case .userPresence: return .userPresence
-            }
-        }
-    }
+public enum KeychainItemAccessControl {
+    // Constraints
+    case biometryAny
+    case biometryCurrentSet
+    case devicePasscode
+    case userPresence
+    // Conjunctions
+    case and
+    case or
+    // Additional Options
+    case applicationPassword
+    case privateKeyUsage
     
-    public enum Conjunction {
-        case and
-        case or
-        
-        var value: SecAccessControlCreateFlags {
-            switch self {
-            case .and: return .and
-            case .or: return .or
+    var value: SecAccessControlCreateFlags {
+        switch self {
+        case .biometryAny:
+            if #available(iOS 11.3, *) {
+                return .biometryAny
+            } else {
+                return .touchIDAny
             }
-        }
-    }
-    
-    public enum AdditionalOption {
-        case applicationPassword
-        case privateKeyUsage
-        
-        var value: SecAccessControlCreateFlags {
-            switch self {
-            case .applicationPassword: return .applicationPassword
-            case .privateKeyUsage: return .privateKeyUsage
+        case .biometryCurrentSet:
+            if #available(iOS 11.3, *) {
+                return .biometryCurrentSet
+            } else {
+                return .touchIDCurrentSet
             }
+        case .devicePasscode: return .devicePasscode
+        case .userPresence: return .userPresence
+        case .and: return .and
+        case .or: return .or
+        case .applicationPassword: return .applicationPassword
+        case .privateKeyUsage: return .privateKeyUsage
         }
     }
 }

@@ -11,4 +11,7 @@ public protocol KeychainItem {
     func clear()
     func set(_ value: String?, for key: String, with accessibility: KeychainItemAccessibility?) throws
     subscript(key: String) -> String? { get set }
+    
+    @discardableResult
+    mutating func append(_ accessControls: [KeychainItemAccessControl]) -> Self
 }
