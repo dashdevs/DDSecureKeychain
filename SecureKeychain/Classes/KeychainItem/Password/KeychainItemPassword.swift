@@ -102,4 +102,13 @@ extension KeychainItemPassword {
         let status = SecItemDelete(query as CFDictionary)
         try handle(status)
     }
+    
+    mutating func append(_ accessControlFlags: SecAccessControlCreateFlags) throws {
+        var error: Unmanaged<CFError>?
+        let access = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
+                                                     kSecAttrAccessibleWhenUnlocked, // TODO: replace with normal behavior
+                                                     accessControlFlags,
+                                                     &error)
+        if let error = error as? NSError { throw error }
+    }
 }

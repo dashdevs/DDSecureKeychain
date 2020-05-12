@@ -31,4 +31,9 @@ extension KeychainItemInternetPassword: KeychainItem {
         get { return try? restore(for: key) }
         set { try? save(newValue, for: key) }
     }
+    
+    @discardableResult
+    public mutating func append(_ accessControls: [KeychainItemAccessControl]) -> KeychainItemInternetPassword {
+        return self
+    }
 }
