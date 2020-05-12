@@ -10,4 +10,7 @@ public protocol KeychainItem {
     var allKeys: [String] { get }
     func clear()
     subscript(key: String) -> String? { get set }
+    
+    mutating func append(_ accessGroup: String) -> Self
+    mutating func append(_ accessibility: KeychainItemAccessibility) -> Self
 }

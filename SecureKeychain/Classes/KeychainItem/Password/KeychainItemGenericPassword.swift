@@ -9,12 +9,10 @@ import Foundation
 public struct KeychainItemGenericPassword: KeychainItemPassword {
     var query: [String : Any]
     
-    public init(service: String, accessibility: KeychainItemAccessibility? = nil, accessGroup: String? = nil) {
+    public init(service: String) {
         var query: [String: Any] = [:]
         query[kSecClass as String] = KeychainItemType.genericPassword.value
         query[kSecAttrService as String] = service
-        accessibility.map { query[kSecAttrAccessible as String] = $0.value }
-        accessGroup.map { query[kSecAttrAccessGroup as String] = $0 }
         self.query = query
     }
 }
@@ -27,5 +25,17 @@ extension KeychainItemGenericPassword: KeychainItem {
     public subscript(key: String) -> String? {
         get { return try? restore(for: key) }
         set { try? save(newValue, for: key) }
+    }
+    
+    @discardableResult
+    public mutating func append(_ accessGroup: String) -> KeychainItemGenericPassword {
+        query[kSecAttrAccessGroup as String] = accessGroup
+        return self
+    }
+    
+    @discardableResult
+    public mutating func append(_ accessibility: KeychainItemAccessibility) -> KeychainItemGenericPassword {
+        query[kSecAttrAccessible as String] = accessibility.value
+        return self
     }
 }
