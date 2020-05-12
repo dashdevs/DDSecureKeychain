@@ -362,6 +362,7 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="none" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qVD-wj-n4B">
                                                 <rect key="frame" x="132" y="13.5" width="227" height="34"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -419,6 +420,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Generic Password" id="rTD-zN-rDJ"/>
                     <connections>
+                        <outlet property="accessibilityTextField" destination="qVD-wj-n4B" id="zSn-hx-AfN"/>
                         <outlet property="allLoginsTextView" destination="hdL-mr-RvT" id="96U-O4-1GV"/>
                         <outlet property="loginTextField" destination="qC5-Q7-gvA" id="lCj-EG-Xtl"/>
                         <outlet property="passwordForLoginTextField" destination="bCj-YH-Xj6" id="r53-2z-5vl"/>

@@ -14,6 +14,7 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		75CF432C24659E64000A1F86 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF432B24659E64000A1F86 /* PasswordViewController.swift */; };
 		75ECCAEC246A7401004FD0AE /* KeychainPasswordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAEA246A72F1004FD0AE /* KeychainPasswordTests.swift */; };
+		75ECCAF1246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAF0246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift */; };
 		C633BA18D6E9F7CA16F48C5C /* Pods_SecureKeychain_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE9176463B6E5D957BE0D64 /* Pods_SecureKeychain_Tests.framework */; };
 		E82D8E9122243C04005A66D2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82D8E9022243C03005A66D2 /* ViewController.swift */; };
 		E82D8E9422243C0B005A66D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E82D8E9222243C0B005A66D2 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		7027759770349335196469FF /* Pods_SecureKeychain_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecureKeychain_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75CF432B24659E64000A1F86 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		75ECCAEA246A72F1004FD0AE /* KeychainPasswordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordTests.swift; sourceTree = "<group>"; };
+		75ECCAF0246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessibilityViewModel.swift; sourceTree = "<group>"; };
 		81CFAD8290EC337F71C544D2 /* SecureKeychain.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SecureKeychain.podspec; path = ../SecureKeychain.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B132ABBCCA6CA6AA16C011C1 /* Pods-SecureKeychain_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureKeychain_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecureKeychain_Example/Pods-SecureKeychain_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BAE9176463B6E5D957BE0D64 /* Pods_SecureKeychain_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecureKeychain_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,7 @@
 			children = (
 				E82D8E9222243C0B005A66D2 /* Main.storyboard */,
 				E82D8E9022243C03005A66D2 /* ViewController.swift */,
+				75ECCAF0246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift */,
 				75CF432B24659E64000A1F86 /* PasswordViewController.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -332,6 +335,7 @@
 			files = (
 				E82D8E9122243C04005A66D2 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				75ECCAF1246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift in Sources */,
 				75CF432C24659E64000A1F86 /* PasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
