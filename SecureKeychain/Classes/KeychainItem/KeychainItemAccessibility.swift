@@ -13,7 +13,7 @@ public enum KeychainItemAccessibility {
     case whenUnlocked
     case whenUnlockedThisDeviceOnly
     
-    public var value: CFString {
+    var value: CFString {
         switch self {
         case .afterFirstUnlock: return kSecAttrAccessibleAfterFirstUnlock
         case .afterFirstUnlockThisDeviceOnly: return kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly
