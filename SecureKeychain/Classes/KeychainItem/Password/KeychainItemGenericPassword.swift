@@ -21,6 +21,8 @@ public struct KeychainItemGenericPassword: KeychainItemPassword {
 extension KeychainItemGenericPassword: KeychainItem {
     public var allKeys: [String] { (try? restoreAllAccounts()) ?? [] }
     
+    public func clear() { try? removeAllAccounts() }
+    
     public subscript(key: String) -> String? {
         get { return try? restore(for: key) }
         set { try? save(newValue, for: key) }

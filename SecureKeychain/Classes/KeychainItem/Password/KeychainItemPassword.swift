@@ -11,6 +11,7 @@ protocol KeychainItemPassword: KeychainItemStatusHandler {
     func save(_ password: String?, for account: String) throws
     func restore(for account: String) throws -> String
     func restoreAllAccounts() throws -> [String]
+    func removeAllAccounts() throws
 }
 
 extension KeychainItemPassword {
@@ -64,6 +65,10 @@ extension KeychainItemPassword {
                 throw KeychainItemError.unexpectedData
         }
         return existingItems.compactMap { $0[kSecAttrAccount as String] as? String }
+    }
+    
+    func removeAllAccounts() throws {
+        try delete(with: query)
     }
     
     private func add(_ password: String, with query: [String: Any]) throws {
