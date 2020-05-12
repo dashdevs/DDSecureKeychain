@@ -72,9 +72,6 @@ class KeychainPasswordTests: XCTestCase {
             internetPasswordKeychain[$0.key] = $0.password
         }
         
-        XCTAssertEqual(genericPasswordKeychain.allKeys.count, 10)
-        XCTAssertEqual(internetPasswordKeychain.allKeys.count, 10)
-        
         genericPasswordKeychain.clear()
         internetPasswordKeychain.clear()
         
