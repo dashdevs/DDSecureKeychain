@@ -21,8 +21,7 @@ class PasswordViewController: UIViewController {
         return inputView
     }()
     lazy var accessibilityInputAccessoryView: UIView = {
-        let accessoryView = UIToolbar()
-        accessoryView.frame.size.height = 44
+        let accessoryView = UIToolbar(frame: CGRect(x: .zero, y: .zero, width: UIScreen.main.bounds.width, height: 44))
         accessoryView.items = [
             UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAccessibility)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
