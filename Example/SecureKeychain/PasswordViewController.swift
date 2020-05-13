@@ -38,9 +38,25 @@ class PasswordViewController: UIViewController {
     }
     
     var keychain: KeychainItem = KeychainItemGenericPassword(service: Bundle.main.bundleIdentifier!)
+    var accessibility: KeychainItemAccessibility?
     
     @IBAction func save() {
-        keychain[loginTextField.text!] = passwordTextField.text
+        guard let accessibility = self.accessibility else {
+            keychain[loginTextField.text!] = passwordTextField.text
+            return
+        }
+        do {
+            try keychain.set(passwordTextField.text, for: loginTextField.text!, with: accessibility)
+        } catch {
+            let message: String
+            switch error as? KeychainItemError {
+            case .alreadyExistWithOtherAccessibility: message = "Already Exist With Other Accessibility"
+            default: message = error.localizedDescription
+            }
+            let alert = UIAlertController(title: "Keychain Error", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            present(alert, animated: true)
+        }
     }
     
     @IBAction func restore() {
@@ -69,8 +85,8 @@ class PasswordViewController: UIViewController {
     @objc func setAccessibility() {
         view.endEditing(true)
         guard let accessibility = KeychainAccessibilityViewModel(rawValue: accessibilityInputView.selectedRow(inComponent: 0)) else { return }
-        keychain.append(accessibility.accessibilityValue)
         accessibilityTextField.text = accessibility.title
+        self.accessibility = accessibility.accessibilityValue
     }
 }
 

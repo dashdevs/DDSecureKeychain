@@ -8,16 +8,17 @@ import Foundation
 
 protocol KeychainItemPassword: KeychainItemStatusHandler {
     var query: [String : Any] { get set }
-    func save(_ password: String?, for account: String) throws
+    func save(_ password: String?, for account: String, with accessibility: KeychainItemAccessibility?) throws
     func restore(for account: String) throws -> String
     func restoreAllAccounts() throws -> [String]
     func removeAllAccounts() throws
 }
 
 extension KeychainItemPassword {
-    func save(_ password: String?, for account: String) throws {
+    func save(_ password: String?, for account: String, with accessibility: KeychainItemAccessibility? = nil) throws {
         var query = self.query
         query[kSecAttrAccount as String] = account
+        query[kSecAttrAccessible as String] = accessibility?.value
         
         guard let password = password else {
             try delete(with: query)
@@ -29,7 +30,18 @@ extension KeychainItemPassword {
         case errSecSuccess:
             try update(password, with: query)
         case errSecItemNotFound:
-            try add(password, with: query)
+            do {
+                try add(password, with: query)
+            } catch {
+                guard accessibility != nil else { throw error }
+                switch error as? KeychainItemError {
+                case .alreadyExist:
+                    query[kSecAttrAccessible as String] = nil
+                    let status = SecItemCopyMatching(query as CFDictionary, nil)
+                    throw status == errSecSuccess ? KeychainItemError.alreadyExistWithOtherAccessibility : error
+                default: throw error
+                }
+            }
         default:
             try handle(status)
         }
