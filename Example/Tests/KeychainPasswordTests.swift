@@ -78,4 +78,18 @@ class KeychainPasswordTests: XCTestCase {
         XCTAssertEqual(genericPasswordKeychain.allKeys.count, 0)
         XCTAssertEqual(internetPasswordKeychain.allKeys.count, 0)
     }
+    
+    func testAccessibility() {
+        let accessibility: KeychainItemAccessibility = .whenPasscodeSetThisDeviceOnly
+        
+        genericPasswordKeychain[Constants.key] = Constants.password
+        internetPasswordKeychain[Constants.key] = Constants.password
+        
+        XCTAssertThrowsError(try genericPasswordKeychain.set(Constants.password, for: Constants.key, with: accessibility), "") { error in
+            switch error as? KeychainItemError {
+            case .alreadyExistWithOtherAccessibility: return
+            default: XCTFail("incorrect error")
+            }
+        }
+    }
 }
