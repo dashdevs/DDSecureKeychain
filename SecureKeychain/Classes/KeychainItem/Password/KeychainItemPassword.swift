@@ -20,6 +20,17 @@ extension KeychainItemPassword {
         query[kSecAttrAccount as String] = account
         query[kSecAttrAccessible as String] = accessibility?.value
         
+        var error: Unmanaged<CFError>?
+        let access = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
+                                                     kSecAttrAccessibleWhenUnlocked,
+                                                     [KeychainItemAccessControl.and.value, KeychainItemAccessControl.userPresence.value, KeychainItemAccessControl.applicationPassword.value],
+                                                     &error)
+        if let error = error?.takeRetainedValue() {
+            print(error)
+            throw error
+        }
+        query[kSecAttrAccessControl as String] = access
+        
         guard let password = password else {
             try delete(with: query)
             return
@@ -101,14 +112,5 @@ extension KeychainItemPassword {
     private func delete(with query: [String: Any]) throws {
         let status = SecItemDelete(query as CFDictionary)
         try handle(status)
-    }
-    
-    mutating func append(_ accessControlFlags: SecAccessControlCreateFlags) throws {
-        var error: Unmanaged<CFError>?
-        let access = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
-                                                     kSecAttrAccessibleWhenUnlocked, // TODO: replace with normal behavior
-                                                     accessControlFlags,
-                                                     &error)
-        if let error = error as? NSError { throw error }
     }
 }
