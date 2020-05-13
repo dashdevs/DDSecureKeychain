@@ -13,7 +13,7 @@ public struct KeychainItemGenericPassword: KeychainItemPassword {
         var query: [String: Any] = [:]
         query[kSecClass as String] = KeychainItemType.genericPassword.value
         query[kSecAttrService as String] = service
-        query[kSecAttrAccessGroup as String] = accessGroup
+        accessGroup.map { query[kSecAttrAccessGroup as String] = $0 }
         self.query = query
     }
 }

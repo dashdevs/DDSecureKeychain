@@ -13,7 +13,7 @@ public struct KeychainItemInternetPassword: KeychainItemPassword {
         var query: [String: Any] = [:]
         query[kSecClass as String] = KeychainItemType.internetPassword.value
         query[kSecAttrServer as String] = server
-        query[kSecAttrAccessGroup as String] = accessGroup
+        accessGroup.map { query[kSecAttrAccessGroup as String] = $0 }
         self.query = query
     }
 }
@@ -30,5 +30,5 @@ extension KeychainItemInternetPassword: KeychainItem {
     public subscript(key: String) -> String? {
         get { return try? restore(for: key) }
         set { try? save(newValue, for: key) }
-    }    
+    }
 }
