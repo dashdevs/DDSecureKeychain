@@ -91,5 +91,12 @@ class KeychainPasswordTests: XCTestCase {
             default: XCTFail("incorrect error")
             }
         }
+        
+        XCTAssertThrowsError(try internetPasswordKeychain.set(Constants.password, for: Constants.key, with: accessibility), "") { error in
+            switch error as? KeychainItemError {
+            case .alreadyExistWithOtherAccessibility: return
+            default: XCTFail("incorrect error")
+            }
+        }
     }
 }
