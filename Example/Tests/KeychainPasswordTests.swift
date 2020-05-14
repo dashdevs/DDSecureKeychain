@@ -85,14 +85,14 @@ class KeychainPasswordTests: XCTestCase {
         genericPasswordKeychain[Constants.key] = Constants.password
         internetPasswordKeychain[Constants.key] = Constants.password
         
-        XCTAssertThrowsError(try genericPasswordKeychain.set(Constants.password, for: Constants.key, with: accessibility), "") { error in
+        XCTAssertThrowsError(try genericPasswordKeychain.set(Constants.password, for: Constants.key, with: (accessibility, nil)), "") { error in
             switch error as? KeychainItemError {
             case .alreadyExistWithOtherAccessibility: return
             default: XCTFail("incorrect error")
             }
         }
         
-        XCTAssertThrowsError(try internetPasswordKeychain.set(Constants.password, for: Constants.key, with: accessibility), "") { error in
+        XCTAssertThrowsError(try internetPasswordKeychain.set(Constants.password, for: Constants.key, with: (accessibility, nil)), "") { error in
             switch error as? KeychainItemError {
             case .alreadyExistWithOtherAccessibility: return
             default: XCTFail("incorrect error")

@@ -19,7 +19,7 @@ public enum KeychainItemAccessControl {
     case applicationPassword
     case privateKeyUsage
     
-    var value: SecAccessControlCreateFlags {
+    var value: SecAccessControlCreateFlags.Element {
         switch self {
         case .biometryAny:
             if #available(iOS 11.3, *) {
@@ -40,5 +40,13 @@ public enum KeychainItemAccessControl {
         case .applicationPassword: return .applicationPassword
         case .privateKeyUsage: return .privateKeyUsage
         }
+    }
+}
+
+extension Array where Element == KeychainItemAccessControl {
+    var value: SecAccessControlCreateFlags {
+        var flags = SecAccessControlCreateFlags()
+        forEach { flags.insert($0.value) }
+        return flags
     }
 }

@@ -8,28 +8,30 @@ import Foundation
 
 protocol KeychainItemPassword: KeychainItemStatusHandler {
     var query: [String : Any] { get set }
-    func save(_ password: String?, for account: String, with accessibility: KeychainItemAccessibility?) throws
+    func save(_ password: String?, for account: String, with accessLevel: KeychainItemAccessLevel?) throws
     func restore(for account: String) throws -> String
     func restoreAllAccounts() throws -> [String]
     func removeAllAccounts() throws
 }
 
 extension KeychainItemPassword {
-    func save(_ password: String?, for account: String, with accessibility: KeychainItemAccessibility? = nil) throws {
+    func save(_ password: String?, for account: String, with accessLevel: KeychainItemAccessLevel? = nil) throws {
         var query = self.query
         query[kSecAttrAccount as String] = account
-        query[kSecAttrAccessible as String] = accessibility?.value
         
-        var error: Unmanaged<CFError>?
-        let access = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
-                                                     kSecAttrAccessibleWhenUnlocked,
-                                                     [KeychainItemAccessControl.and.value, KeychainItemAccessControl.userPresence.value, KeychainItemAccessControl.applicationPassword.value],
-                                                     &error)
-        if let error = error?.takeRetainedValue() {
-            print(error)
-            throw error
+        if let accessLevel = accessLevel {
+            if let accessControl = accessLevel.accessControl {
+                var error: Unmanaged<CFError>?
+                let access = SecAccessControlCreateWithFlags(kCFAllocatorDefault,
+                                                             accessLevel.accessibility.value,
+                                                             accessControl.value,
+                                                             &error)
+                if let error = error?.takeRetainedValue() { throw error }
+                query[kSecAttrAccessControl as String] = access
+            } else {
+                query[kSecAttrAccessible as String] = accessLevel.accessibility.value
+            }
         }
-        query[kSecAttrAccessControl as String] = access
         
         guard let password = password else {
             try delete(with: query)
@@ -44,10 +46,11 @@ extension KeychainItemPassword {
             do {
                 try add(password, with: query)
             } catch {
-                guard accessibility != nil else { throw error }
+                guard accessLevel != nil else { throw error }
                 switch error as? KeychainItemError {
                 case .alreadyExist:
                     query[kSecAttrAccessible as String] = nil
+                    query[kSecAttrAccessControl as String] = nil
                     let status = SecItemCopyMatching(query as CFDictionary, nil)
                     throw status == errSecSuccess ? KeychainItemError.alreadyExistWithOtherAccessibility : error
                 default: throw error
