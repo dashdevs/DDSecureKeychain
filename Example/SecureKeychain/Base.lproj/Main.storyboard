@@ -610,7 +610,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Access Control" id="osS-Hf-LOS">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="wVQ-li-ZTM"/>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="wVQ-li-ZTM">
+                            <connections>
+                                <action selector="save" destination="hwB-pz-b9c" id="OqD-hb-gCq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5G-Zh-CuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

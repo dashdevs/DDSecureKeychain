@@ -8,14 +8,29 @@ import UIKit
 import SecureKeychain
 
 class AccessControlTableViewController: UITableViewController {
-    let accessControl: [KeychainItemAccessControl]?
+    var onSave: (([KeychainAccessControlViewModel]?) -> Void)?
     
-    init?(coder: NSCoder, accessControl: [KeychainItemAccessControl]?) {
-        self.accessControl = accessControl
-        super.init(coder: coder)
+    var accessControl: [KeychainAccessControlViewModel]?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        accessControl?.forEach { viewModel in
+            let indexPath = IndexPath(row: viewModel.rawValue, section: 0)
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    @IBAction func save() {
+        let accessControl = tableView.indexPathsForSelectedRows?.compactMap { KeychainAccessControlViewModel(rawValue: $0.row) }
+        onSave?(accessControl)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.accessoryType = .none
     }
 }
