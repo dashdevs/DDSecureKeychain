@@ -38,6 +38,11 @@ class PasswordViewController: UIViewController {
     
     var keychain: KeychainItem = KeychainItemGenericPassword(service: Bundle.main.bundleIdentifier!)
     var accessibility: KeychainItemAccessibility?
+    var accessControl: [KeychainItemAccessControl]?
+    
+    @IBSegueAction func showAccessControl(coder: NSCoder, sender: Any?, segueIdentifier: String?) -> AccessControlTableViewController? {
+        AccessControlTableViewController(coder: coder, accessControl: accessControl)
+    }
     
     @IBAction func save() {
         guard let accessibility = self.accessibility else {
