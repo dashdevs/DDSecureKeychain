@@ -38,10 +38,20 @@ class PasswordViewController: UIViewController {
     
     var keychain: KeychainItem = KeychainItemGenericPassword(service: Bundle.main.bundleIdentifier!)
     var accessibility: KeychainItemAccessibility?
-    var accessControl: [KeychainItemAccessControl]?
+    var accessControl: [KeychainAccessControlViewModel]?
     
-    @IBSegueAction func showAccessControl(coder: NSCoder, sender: Any?, segueIdentifier: String?) -> AccessControlTableViewController? {
-        AccessControlTableViewController(coder: coder, accessControl: accessControl)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case let viewController as AccessControlTableViewController:
+            viewController.accessControl = accessControl
+            viewController.onSave = { [weak self] accessControl in
+                guard let strongSelf = self else { return }
+                strongSelf.accessControl = accessControl
+                strongSelf.navigationController?.popViewController(animated: true)
+            }
+        default:
+            super.prepare(for: segue, sender: sender)
+        }
     }
     
     @IBAction func save() {
@@ -50,7 +60,7 @@ class PasswordViewController: UIViewController {
             return
         }
         do {
-            let accessLevel: KeychainItemAccessLevel = (accessibility, nil)
+            let accessLevel: KeychainItemAccessLevel = (accessibility, accessControl?.map { $0.value })
             try keychain.set(passwordTextField.text, for: loginTextField.text!, with: accessLevel)
         } catch {
             let message: String
