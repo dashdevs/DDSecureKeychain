@@ -7,7 +7,7 @@
 import Foundation
 import SecureKeychain
 
-enum KeychainAccessControlViewModel: Int {
+enum KeychainAccessControlViewModel: Int, CaseIterable {
     case biometryAny
     case biometryCurrentSet
     case devicePasscode

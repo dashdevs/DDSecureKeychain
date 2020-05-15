@@ -8,17 +8,28 @@ import UIKit
 import SecureKeychain
 
 class AccessControlTableViewController: UITableViewController {
+    private struct ReuseIdentifiers {
+        static let cell = "BasicCell"
+    }
+    
     var onSave: (([KeychainAccessControlViewModel]?) -> Void)?
     
     var accessControl: [KeychainAccessControlViewModel]?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        accessControl?.forEach { viewModel in
-            let indexPath = IndexPath(row: viewModel.rawValue, section: 0)
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return KeychainAccessControlViewModel.allCases.count
+    }
+        
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.cell, for: indexPath)
+        let viewModel = KeychainAccessControlViewModel(rawValue: indexPath.row)
+        cell.textLabel?.text = viewModel?.title
+        viewModel.map {
+            guard accessControl?.contains($0) == true else { return }
             tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            cell.accessoryType = .checkmark
         }
+        return cell
     }
     
     @IBAction func save() {
