@@ -40,16 +40,16 @@ class PasswordViewController: UIViewController {
     
     var keychain: KeychainItem = KeychainItemGenericPassword(service: Bundle.main.bundleIdentifier!)
     var accessibility: KeychainItemAccessibility?
-    var accessControl: [KeychainAccessControlViewModel]? {
+    var accessControl: [KeychainAccessControlViewModel] = [] {
         didSet {
-            accessControlTextField.text = accessControl?.reduce("") { $0 + $1.title + ", " }
+            accessControlTextField.text = accessControl.reduce("") { $0 + $1.title + ", " }
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.destination {
         case let viewController as AccessControlTableViewController:
-            viewController.accessControl = accessControl ?? []
+            viewController.accessControl = accessControl
             viewController.onSave = { [weak self] accessControl in
                 guard let strongSelf = self else { return }
                 strongSelf.accessControl = accessControl
@@ -66,7 +66,7 @@ class PasswordViewController: UIViewController {
             return
         }
         do {
-            let accessLevel: KeychainItemAccessLevel = (accessibility, accessControl?.map { $0.value })
+            let accessLevel: KeychainItemAccessLevel = (accessibility, accessControl.map { $0.value })
             try keychain.set(passwordTextField.text, for: loginTextField.text!, with: accessLevel)
         } catch {
             let message: String
@@ -106,7 +106,7 @@ class PasswordViewController: UIViewController {
     @objc func setAccessibility() {
         defer {
             accessControlButton.isEnabled = accessibility != nil
-            if accessibility == nil { accessControl = nil }
+            if accessibility == nil { accessControl.removeAll() }
         }
         view.endEditing(true)
         guard let accessibility = KeychainAccessibilityViewModel(rawValue: accessibilityInputView.selectedRow(inComponent: 0)) else { return }
