@@ -366,7 +366,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9TQ-dS-Va3">
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9TQ-dS-Va3">
                                                 <rect key="frame" x="16" y="67.5" width="108" height="30"/>
                                                 <state key="normal" title="Access Control:"/>
                                                 <connections>
@@ -439,6 +439,8 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="aNt-OP-6M2"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="accessControlButton" destination="9TQ-dS-Va3" id="DDx-N9-bJH"/>
+                        <outlet property="accessControlTextField" destination="LHe-5o-aHe" id="GWx-pW-ygT"/>
                         <outlet property="accessibilityTextField" destination="qVD-wj-n4B" id="zSn-hx-AfN"/>
                         <outlet property="allLoginsTextView" destination="hdL-mr-RvT" id="96U-O4-1GV"/>
                         <outlet property="loginTextField" destination="qC5-Q7-gvA" id="lCj-EG-Xtl"/>
