@@ -49,7 +49,7 @@ class PasswordViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.destination {
         case let viewController as AccessControlTableViewController:
-            viewController.accessControl = accessControl
+            viewController.accessControl = accessControl ?? []
             viewController.onSave = { [weak self] accessControl in
                 guard let strongSelf = self else { return }
                 strongSelf.accessControl = accessControl
