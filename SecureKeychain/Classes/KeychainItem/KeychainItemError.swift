@@ -6,7 +6,7 @@
 
 import Foundation
 
-public enum KeychainItemError: Error {
+public enum KeychainItemError: Error, Equatable {
     case alreadyExist
     case alreadyExistWithOtherAccessibility
     case canNotCreateDataFromPassword

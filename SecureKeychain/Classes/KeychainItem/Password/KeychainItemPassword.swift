@@ -37,12 +37,12 @@ extension KeychainItemPassword {
             try delete(with: query)
             return
         }
-        
-        let status = SecItemCopyMatching(query as CFDictionary, nil)
-        switch status {
-        case errSecSuccess:
+
+        do {
             try update(password, with: query)
-        case errSecItemNotFound:
+        } catch {
+            guard let keychainError = error as? KeychainItemError, keychainError == .notFound else { throw error }
+            
             do {
                 try add(password, with: query)
             } catch {
@@ -56,8 +56,6 @@ extension KeychainItemPassword {
                 default: throw error
                 }
             }
-        default:
-            try handle(status)
         }
     }
     
