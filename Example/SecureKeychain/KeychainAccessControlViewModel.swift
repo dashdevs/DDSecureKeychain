@@ -17,6 +17,19 @@ enum KeychainAccessControlViewModel: Int {
     case and
     case or
     
+    var title: String {
+        switch self {
+        case .biometryAny: return "Biometry Any"
+        case .biometryCurrentSet: return "Biometry Current Set"
+        case .devicePasscode: return "Device Passcode"
+        case .userPresence: return "User Presence"
+        case .applicationPassword: return "Application Password"
+        case .privateKeyUsage: return "Private Key Usage"
+        case .and: return "And"
+        case .or: return "Or"
+        }
+    }
+    
     var value: KeychainItemAccessControl {
         switch self {
         case .biometryAny: return .biometryAny
