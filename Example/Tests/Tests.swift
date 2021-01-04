@@ -18,7 +18,7 @@ class Tests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        secureKeychain = SecureKeychain(accessibility: .whenUnlocked, authenticationPolicy: .touchIDAny)
+        secureKeychain = SecureKeychain(accessibility: .whenUnlocked, authenticationPolicy: .biometryAny)
     }
     
     override func tearDown() {

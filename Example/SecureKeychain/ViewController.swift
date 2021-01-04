@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var isEncryptedKeychain: UITextField!
     @IBOutlet weak var isPasswordCorrect: UITextField!
     
-    private lazy var secureKeychain = SecureKeychain(accessibility: .whenUnlocked, authenticationPolicy: .touchIDAny)
+    private lazy var secureKeychain = SecureKeychain(accessibility: .whenUnlocked, authenticationPolicy: .biometryAny)
     
     override func viewDidLoad() {
         super.viewDidLoad()

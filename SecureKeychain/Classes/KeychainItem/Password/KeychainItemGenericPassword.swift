@@ -31,4 +31,8 @@ extension KeychainItemGenericPassword: KeychainItem {
         get { return try? restore(for: key) }
         set { try? save(newValue, for: key) }
     }
+    
+    public func remove(_ key: String) throws {
+        try save(nil, for: key)
+    }
 }
