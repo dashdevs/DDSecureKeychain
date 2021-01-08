@@ -18,6 +18,7 @@
 		75CF431624654F44000A1F86 /* KeychainItemStatusHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF431524654F44000A1F86 /* KeychainItemStatusHandler.swift */; };
 		75CF431924655F7C000A1F86 /* KeychainItemGenericPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF431824655F7C000A1F86 /* KeychainItemGenericPassword.swift */; };
 		75CF431B24655F8A000A1F86 /* KeychainItemInternetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF431A24655F8A000A1F86 /* KeychainItemInternetPassword.swift */; };
+		75CF431E2465723A000A1F86 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF431C24657237000A1F86 /* KeychainItemAccessibility.swift */; };
 		75CF432A246597F9000A1F86 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF432824659695000A1F86 /* KeychainItem.swift */; };
 		A967960EE4C1C1AF8A3FC3555BABDC58 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45FDC0D6DC265F0A753008ABAAB304D /* Keychain.swift */; };
 		B953126B28B3D6561AFEE3A3F1F0D2FB /* Pods-SecureKeychain_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F9674E3454305F70D8BF8193848ADC75 /* Pods-SecureKeychain_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -90,6 +91,7 @@
 		75CF431524654F44000A1F86 /* KeychainItemStatusHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemStatusHandler.swift; sourceTree = "<group>"; };
 		75CF431824655F7C000A1F86 /* KeychainItemGenericPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemGenericPassword.swift; sourceTree = "<group>"; };
 		75CF431A24655F8A000A1F86 /* KeychainItemInternetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemInternetPassword.swift; sourceTree = "<group>"; };
+		75CF431C24657237000A1F86 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		75CF432824659695000A1F86 /* KeychainItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		78A18FDB236794E79DE6CA29611855B6 /* KeychainAccess-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KeychainAccess-dummy.m"; sourceTree = "<group>"; };
 		8174D27F06249977D148786D2E8DDA0D /* Pods-SecureKeychain_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SecureKeychain_Tests-dummy.m"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			children = (
 				75CF431724655F4F000A1F86 /* Password */,
 				75CF432824659695000A1F86 /* KeychainItem.swift */,
+				75CF431C24657237000A1F86 /* KeychainItemAccessibility.swift */,
 				75CF431324653E32000A1F86 /* KeychainItemError.swift */,
 				75CF431524654F44000A1F86 /* KeychainItemStatusHandler.swift */,
 				75CF431124653E0E000A1F86 /* KeychainItemType.swift */,
@@ -498,6 +501,7 @@
 				75CF431424653E32000A1F86 /* KeychainItemError.swift in Sources */,
 				75CF431924655F7C000A1F86 /* KeychainItemGenericPassword.swift in Sources */,
 				75CF431B24655F8A000A1F86 /* KeychainItemInternetPassword.swift in Sources */,
+				75CF431E2465723A000A1F86 /* KeychainItemAccessibility.swift in Sources */,
 				090934583F08D5680526819295DFE004 /* SecureKeychain.swift in Sources */,
 				75CF431224653E0E000A1F86 /* KeychainItemType.swift in Sources */,
 				75CF431024653DF8000A1F86 /* KeychainItemPassword.swift in Sources */,
