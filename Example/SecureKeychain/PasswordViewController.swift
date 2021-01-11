@@ -66,7 +66,7 @@ class PasswordViewController: UIViewController {
             return
         }
         do {
-            let accessLevel: KeychainItemAccessLevel = (accessibility, accessControl.map { $0.value })
+            let accessLevel: KeychainItemAccessLevel = (accessibility, accessControl.map { $0.value }, nil)
             try keychain.set(passwordTextField.text, for: loginTextField.text!, with: accessLevel)
         } catch {
             let message: String

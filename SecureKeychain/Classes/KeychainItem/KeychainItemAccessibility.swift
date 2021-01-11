@@ -6,8 +6,6 @@
 
 import Foundation
 
-public typealias KeychainItemAccessLevel = (accessibility: KeychainItemAccessibility, accessControl: [KeychainItemAccessControl]?)
-
 public enum KeychainItemAccessibility {
     case afterFirstUnlock
     case afterFirstUnlockThisDeviceOnly
