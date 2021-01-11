@@ -23,8 +23,8 @@ extension KeychainItemGenericPassword: KeychainItem {
     
     public func clear() { try? removeAllAccounts() }
     
-    public func set(_ value: String?, for key: String, with accessibility: KeychainItemAccessibility?) throws {
-        try save(value, for: key, with: accessibility)
+    public func set(_ value: String?, for key: String, with accessLevel: KeychainItemAccessLevel?) throws {
+        try save(value, for: key, with: accessLevel)
     }
     
     public subscript(key: String) -> String? {

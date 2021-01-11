@@ -286,10 +286,10 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlg-eb-1HM">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="535.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="587.5"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qC5-Q7-gvA">
-                                                <rect key="frame" x="16" y="67.5" width="343" height="34"/>
+                                                <rect key="frame" x="16" y="119.5" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -297,7 +297,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gjo-ev-veg">
-                                                <rect key="frame" x="16" y="121.5" width="343" height="34"/>
+                                                <rect key="frame" x="16" y="173.5" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -305,40 +305,40 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VDy-QK-5gb">
-                                                <rect key="frame" x="170.5" y="175.5" width="34" height="30"/>
+                                                <rect key="frame" x="170.5" y="227.5" width="34" height="30"/>
                                                 <state key="normal" title="Save"/>
                                                 <connections>
                                                     <action selector="save" destination="nU9-aX-0HN" eventType="touchUpInside" id="1aT-ee-vD0"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cz2-Hn-Iym">
-                                                <rect key="frame" x="16" y="225.5" width="53" height="30"/>
+                                                <rect key="frame" x="16" y="277.5" width="53" height="30"/>
                                                 <state key="normal" title="Restore"/>
                                                 <connections>
                                                     <action selector="restore" destination="nU9-aX-0HN" eventType="touchUpInside" id="YDx-Eb-GdB"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password for login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bCj-YH-Xj6">
-                                                <rect key="frame" x="85" y="223.5" width="274" height="34"/>
+                                                <rect key="frame" x="85" y="275.5" width="274" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cx5-9T-dz6">
-                                                <rect key="frame" x="95" y="277.5" width="185" height="30"/>
+                                                <rect key="frame" x="95" y="329.5" width="185" height="30"/>
                                                 <state key="normal" title="Remove password for login"/>
                                                 <connections>
                                                     <action selector="removePasswordForLogin" destination="nU9-aX-0HN" eventType="touchUpInside" id="Q5J-S9-ajO"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="817-Bw-dYh">
-                                                <rect key="frame" x="126" y="327.5" width="123" height="30"/>
+                                                <rect key="frame" x="126" y="379.5" width="123" height="30"/>
                                                 <state key="normal" title="Restore All Logins"/>
                                                 <connections>
                                                     <action selector="restoreAllLogins" destination="nU9-aX-0HN" eventType="touchUpInside" id="guC-bU-o4K"/>
                                                 </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hdL-mr-RvT">
-                                                <rect key="frame" x="16" y="365.5" width="343" height="100"/>
+                                                <rect key="frame" x="16" y="417.5" width="343" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="5AG-Ra-6Ed"/>
@@ -348,7 +348,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qeq-HJ-10j">
-                                                <rect key="frame" x="149.5" y="485.5" width="76" height="30"/>
+                                                <rect key="frame" x="149.5" y="537.5" width="76" height="30"/>
                                                 <state key="normal" title="Remove All"/>
                                                 <connections>
                                                     <action selector="removeAll" destination="nU9-aX-0HN" eventType="touchUpInside" id="G1q-MW-03h"/>
@@ -366,11 +366,26 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9TQ-dS-Va3">
+                                                <rect key="frame" x="16" y="67.5" width="108" height="30"/>
+                                                <state key="normal" title="Access Control:"/>
+                                                <connections>
+                                                    <segue destination="hwB-pz-b9c" kind="show" identifier="ShowAccessControl" id="Z4E-0h-5cb"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="none" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LHe-5o-aHe">
+                                                <rect key="frame" x="140" y="65.5" width="219" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="Cz2-Hn-Iym" firstAttribute="leading" secondItem="vlg-eb-1HM" secondAttribute="leading" constant="16" id="0oQ-F2-WWQ"/>
                                             <constraint firstItem="VDy-QK-5gb" firstAttribute="centerX" secondItem="vlg-eb-1HM" secondAttribute="centerX" id="4Bb-du-4my"/>
+                                            <constraint firstItem="9TQ-dS-Va3" firstAttribute="leading" secondItem="vlg-eb-1HM" secondAttribute="leading" constant="16" id="8ZC-Ix-ake"/>
+                                            <constraint firstItem="9TQ-dS-Va3" firstAttribute="top" secondItem="qVD-wj-n4B" secondAttribute="bottom" constant="20" id="A0N-fs-BwA"/>
+                                            <constraint firstAttribute="trailing" secondItem="LHe-5o-aHe" secondAttribute="trailing" constant="16" id="A9e-Xa-ahn"/>
                                             <constraint firstItem="Cx5-9T-dz6" firstAttribute="top" secondItem="bCj-YH-Xj6" secondAttribute="bottom" constant="20" id="BwR-S1-7LN"/>
                                             <constraint firstItem="gjo-ev-veg" firstAttribute="top" secondItem="qC5-Q7-gvA" secondAttribute="bottom" constant="20" id="FUd-yr-zjy"/>
                                             <constraint firstAttribute="trailing" secondItem="bCj-YH-Xj6" secondAttribute="trailing" constant="16" id="Fs0-37-Hw7"/>
@@ -379,6 +394,7 @@
                                             <constraint firstItem="G5m-MV-04j" firstAttribute="leading" secondItem="vlg-eb-1HM" secondAttribute="leading" constant="16" id="GYc-bV-08X"/>
                                             <constraint firstItem="Cx5-9T-dz6" firstAttribute="centerX" secondItem="vlg-eb-1HM" secondAttribute="centerX" id="Gpy-jx-K8a"/>
                                             <constraint firstAttribute="trailing" secondItem="gjo-ev-veg" secondAttribute="trailing" constant="16" id="Iei-0Y-570"/>
+                                            <constraint firstItem="LHe-5o-aHe" firstAttribute="centerY" secondItem="9TQ-dS-Va3" secondAttribute="centerY" id="LUF-oP-C7n"/>
                                             <constraint firstItem="bCj-YH-Xj6" firstAttribute="leading" secondItem="Cz2-Hn-Iym" secondAttribute="trailing" constant="16" id="NxE-Wh-7xv"/>
                                             <constraint firstItem="qeq-HJ-10j" firstAttribute="top" secondItem="hdL-mr-RvT" secondAttribute="bottom" constant="20" id="PWF-ZF-hw3"/>
                                             <constraint firstItem="qeq-HJ-10j" firstAttribute="centerX" secondItem="vlg-eb-1HM" secondAttribute="centerX" id="RgV-hm-cxO"/>
@@ -389,11 +405,12 @@
                                             <constraint firstItem="hdL-mr-RvT" firstAttribute="leading" secondItem="vlg-eb-1HM" secondAttribute="leading" constant="16" id="bRo-GJ-QLE"/>
                                             <constraint firstItem="hdL-mr-RvT" firstAttribute="top" secondItem="817-Bw-dYh" secondAttribute="bottom" constant="8" id="cPI-Jw-VcM"/>
                                             <constraint firstItem="VDy-QK-5gb" firstAttribute="top" secondItem="gjo-ev-veg" secondAttribute="bottom" constant="20" id="e1G-4D-IaO"/>
+                                            <constraint firstItem="LHe-5o-aHe" firstAttribute="leading" secondItem="9TQ-dS-Va3" secondAttribute="trailing" constant="16" id="ere-Vc-a3r"/>
                                             <constraint firstItem="bCj-YH-Xj6" firstAttribute="centerY" secondItem="Cz2-Hn-Iym" secondAttribute="centerY" id="f6z-Xg-dIr"/>
-                                            <constraint firstItem="qC5-Q7-gvA" firstAttribute="top" secondItem="qVD-wj-n4B" secondAttribute="bottom" constant="20" id="fLK-zW-cfA"/>
                                             <constraint firstItem="qVD-wj-n4B" firstAttribute="centerY" secondItem="G5m-MV-04j" secondAttribute="centerY" id="grO-FS-3Vf"/>
                                             <constraint firstItem="G5m-MV-04j" firstAttribute="top" secondItem="vlg-eb-1HM" secondAttribute="top" constant="20" id="iSi-Ch-RbD"/>
                                             <constraint firstItem="qC5-Q7-gvA" firstAttribute="leading" secondItem="vlg-eb-1HM" secondAttribute="leading" constant="16" id="ksX-YY-wrE"/>
+                                            <constraint firstItem="qC5-Q7-gvA" firstAttribute="top" secondItem="LHe-5o-aHe" secondAttribute="bottom" constant="20" id="lYU-zZ-rig"/>
                                             <constraint firstAttribute="trailing" secondItem="qVD-wj-n4B" secondAttribute="trailing" constant="16" id="rra-S0-e6L"/>
                                             <constraint firstItem="gjo-ev-veg" firstAttribute="leading" secondItem="vlg-eb-1HM" secondAttribute="leading" constant="16" id="uZw-om-F3l"/>
                                             <constraint firstAttribute="trailing" secondItem="qC5-Q7-gvA" secondAttribute="trailing" constant="16" id="zR3-iA-4oZ"/>
@@ -418,8 +435,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="I3d-wc-vrb"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Generic Password" id="rTD-zN-rDJ"/>
+                    <navigationItem key="navigationItem" title="Generic Password" id="rTD-zN-rDJ">
+                        <barButtonItem key="backBarButtonItem" title=" " id="aNt-OP-6M2"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="accessControlButton" destination="9TQ-dS-Va3" id="DDx-N9-bJH"/>
+                        <outlet property="accessControlTextField" destination="LHe-5o-aHe" id="GWx-pW-ygT"/>
                         <outlet property="accessibilityTextField" destination="qVD-wj-n4B" id="zSn-hx-AfN"/>
                         <outlet property="allLoginsTextView" destination="hdL-mr-RvT" id="96U-O4-1GV"/>
                         <outlet property="loginTextField" destination="qC5-Q7-gvA" id="lCj-EG-Xtl"/>
@@ -430,6 +451,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5d-a4-wlJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="993" y="1173"/>
+        </scene>
+        <!--Access Control-->
+        <scene sceneID="A2e-9c-orb">
+            <objects>
+                <tableViewController hidesBottomBarWhenPushed="YES" id="hwB-pz-b9c" customClass="AccessControlTableViewController" customModule="SecureKeychain_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZhQ-Vi-a6e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="vgM-Qh-l19">
+                            <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="BasicCell" textLabel="wze-Tc-UnO" style="IBUITableViewCellStyleDefault" id="BnC-S2-SrT">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BnC-S2-SrT" id="V1t-MT-HDP">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wze-Tc-UnO">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="hwB-pz-b9c" id="yBz-3d-o9r"/>
+                            <outlet property="delegate" destination="hwB-pz-b9c" id="gsH-S5-0nV"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Access Control" id="osS-Hf-LOS">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="wVQ-li-ZTM">
+                            <connections>
+                                <action selector="save" destination="hwB-pz-b9c" id="OqD-hb-gCq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J5G-Zh-CuV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1766" y="1173"/>
         </scene>
     </scenes>
 </document>

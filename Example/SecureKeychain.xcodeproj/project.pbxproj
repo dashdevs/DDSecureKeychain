@@ -12,6 +12,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		757EE5C0246D711E002F92FE /* AccessControlTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757EE5BF246D711E002F92FE /* AccessControlTableViewController.swift */; };
+		757EE5C2246D875F002F92FE /* KeychainAccessControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757EE5C1246D875F002F92FE /* KeychainAccessControlViewModel.swift */; };
 		75CF432C24659E64000A1F86 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CF432B24659E64000A1F86 /* PasswordViewController.swift */; };
 		75ECCAEC246A7401004FD0AE /* KeychainPasswordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAEA246A72F1004FD0AE /* KeychainPasswordTests.swift */; };
 		75ECCAF1246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75ECCAF0246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift */; };
@@ -43,6 +45,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		7027759770349335196469FF /* Pods_SecureKeychain_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecureKeychain_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		757EE5BF246D711E002F92FE /* AccessControlTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessControlTableViewController.swift; sourceTree = "<group>"; };
+		757EE5C1246D875F002F92FE /* KeychainAccessControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessControlViewModel.swift; sourceTree = "<group>"; };
 		75CF432B24659E64000A1F86 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		75ECCAEA246A72F1004FD0AE /* KeychainPasswordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordTests.swift; sourceTree = "<group>"; };
 		75ECCAF0246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessibilityViewModel.swift; sourceTree = "<group>"; };
@@ -111,7 +115,9 @@
 				E82D8E9222243C0B005A66D2 /* Main.storyboard */,
 				E82D8E9022243C03005A66D2 /* ViewController.swift */,
 				75ECCAF0246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift */,
+				757EE5C1246D875F002F92FE /* KeychainAccessControlViewModel.swift */,
 				75CF432B24659E64000A1F86 /* PasswordViewController.swift */,
+				757EE5BF246D711E002F92FE /* AccessControlTableViewController.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -336,6 +342,8 @@
 				E82D8E9122243C04005A66D2 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				75ECCAF1246AD1DE004FD0AE /* KeychainAccessibilityViewModel.swift in Sources */,
+				757EE5C0246D711E002F92FE /* AccessControlTableViewController.swift in Sources */,
+				757EE5C2246D875F002F92FE /* KeychainAccessControlViewModel.swift in Sources */,
 				75CF432C24659E64000A1F86 /* PasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
