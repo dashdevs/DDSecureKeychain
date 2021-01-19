@@ -7,14 +7,17 @@
 import Foundation
 
 public enum KeychainItemAccessControl {
+    
     // Constraints
     case biometryAny
     case biometryCurrentSet
     case devicePasscode
     case userPresence
+    
     // Conjunctions
     case and
     case or
+    
     // Additional Options
     case applicationPassword
     case privateKeyUsage
