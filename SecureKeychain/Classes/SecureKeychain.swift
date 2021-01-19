@@ -104,7 +104,7 @@ public class SecureKeychain {
     /// - Returns: Returns value in case of successful restoration, otherwise returns nil.
     
     public func restoreValueFormUnencryptedKeychain(from key: String) -> String? {
-        return securePersistor[key]
+        securePersistor[key]
     }
     
     /// Restore value from password encrypred keychain with specified password.
@@ -128,7 +128,7 @@ public class SecureKeychain {
     /// - Returns: If value restoration was succefull returns restored value, otherwise returns nil.
     
     public func restoreBiometricProtectedValue(for key: String, localAuthenticationContext: LAContext) -> String? {
-        return try? securePersistor.get(key, with: localAuthenticationContext, for: nil)
+        try? securePersistor.get(key, with: localAuthenticationContext, for: nil)
     }
     
     /// Restore value from encrypted keychain without passing specified password or local authentication context. If value is encrypted native alert for specifing decrypting value will appear.

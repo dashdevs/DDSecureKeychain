@@ -67,13 +67,15 @@ extension KeychainItemPassword {
         query[kSecAttrAccount as String] = key
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         query[kSecReturnData as String] = true
+        
         if let context = context {
             query[kSecUseAuthenticationContext as String] = context
-            
         }
+        
         if let reason = reason {
             query[kSecUseOperationPrompt as String] = reason
         }
+        
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
         try handle(status)
