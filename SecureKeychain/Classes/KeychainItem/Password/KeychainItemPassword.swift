@@ -9,7 +9,7 @@ import LocalAuthentication
 protocol KeychainItemPassword: KeychainItemStatusHandler {
     var query: [String : Any] { get set }
     func save(_ password: String?, for account: String, with accessLevel: KeychainItemAccessLevel?) throws
-    func restore(for account: String) throws -> String
+    func restore(_ key: String, with context: LAContext?, for reason: String?) throws -> String
     func restoreAllAccounts() throws -> [String]
     func removeAllAccounts() throws
 }
@@ -62,11 +62,7 @@ extension KeychainItemPassword {
         }
     }
     
-    func restore(for account: String) throws -> String {
-        return try get(account, with: nil, for: nil)
-    }
-    
-    func get(_ key: String, with context: LAContext? = nil, for reason: String? = nil) throws -> String {
+    func restore(_ key: String, with context: LAContext? = nil, for reason: String? = nil) throws -> String {
         var query = self.query
         query[kSecAttrAccount as String] = key
         query[kSecMatchLimit as String] = kSecMatchLimitOne

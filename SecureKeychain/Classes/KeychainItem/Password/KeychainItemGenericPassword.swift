@@ -29,11 +29,11 @@ extension KeychainItemGenericPassword: KeychainItem {
     }
     
     public func get(_ key: String, with context: LAContext?, for reason: String?) throws -> String {
-        return try get(key, with: context, for: reason)
+        try restore(key, with: context, for: reason)
     }
     
     public subscript(key: String) -> String? {
-        get { return try? restore(for: key) }
+        get { try? restore(key) }
         set { try? save(newValue, for: key) }
     }
 }
