@@ -39,6 +39,7 @@ public class SecureKeychain {
     ///   - keychain: The keychain to store.
     ///   - accessibility: The accessibility level for keychain item.
     ///   - policy: The authentication policy for keychain item.
+    ///   - context: Represents an authentication context.
     
     private func setEncryptedValue(_ value: String, for key: String, accessibility: KeychainItemAccessibility, with policy: KeychainItemAccessControl, context: LAContext) throws {
         try securePersistor.set(value, for: key, with: KeychainItemAccessLevel(accessibility: accessibility, accessControl: [policy], context: context))
