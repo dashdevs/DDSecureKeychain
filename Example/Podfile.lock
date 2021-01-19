@@ -1,24 +1,16 @@
 PODS:
-  - KeychainAccess (3.1.2)
-  - SecureKeychain (0.1.0):
-    - KeychainAccess (~> 3.1)
+  - SecureKeychain (0.1.0)
 
 DEPENDENCIES:
-  - KeychainAccess (~> 3.1)
   - SecureKeychain (from `../`)
-
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - KeychainAccess
 
 EXTERNAL SOURCES:
   SecureKeychain:
     :path: "../"
 
 SPEC CHECKSUMS:
-  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
-  SecureKeychain: 4a3d7653ae6f61d54ba454f12446310e9adfdab3
+  SecureKeychain: f39baa896aab116781bda1c0bf318963aca796c3
 
-PODFILE CHECKSUM: de3d04e20372e12afc207b29fe817ed477ee3f39
+PODFILE CHECKSUM: de72739915831b905bf3debdf4217dc4c1d002f2
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.10.0
