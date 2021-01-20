@@ -18,8 +18,8 @@ public class SecureKeychain {
     
     /// Initialize SecureKeychain instance.
     ///
-    /// - Parameter serviceID (optional): service associated with keychain items.
-    ///                                   If non-specified, bundleIdentifier will be used as serviceID.
+    /// - Parameters:
+    ///   - keychain: Associated with keychain item protocol.
     ///   - accessibility (optional): The default accessibility value for keychain items.
     ///   - authenticationPolicy (optional): The default authentication Policy for keychain items.
     

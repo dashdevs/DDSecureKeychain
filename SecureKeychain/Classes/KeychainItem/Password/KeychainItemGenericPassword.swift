@@ -6,8 +6,20 @@
 
 import LocalAuthentication
 
+/// Structure is designed to work with general types of passwords.
+
 public struct KeychainItemGenericPassword: KeychainItemPassword {
+    
+    ///Query dictionary is needed to add all the required attributes.
+    
     var query: [String : Any]
+    
+    
+    /// Initialize KeychainItemGenericPassword instance.
+    ///
+    /// - Parameters:
+    ///   - service: Value for the key kSecAttrService.
+    ///   - accessGroup (optional): Value for the key kSecAttrAccessGroup.
     
     public init(service: String, accessGroup: String? = nil) {
         var query: [String: Any] = [:]

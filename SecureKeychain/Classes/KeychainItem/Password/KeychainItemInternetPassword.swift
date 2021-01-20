@@ -6,9 +6,19 @@
 
 import LocalAuthentication
 
-public struct KeychainItemInternetPassword: KeychainItemPassword {
+/// Structure is designed to work with internet types of passwords.
 
+public struct KeychainItemInternetPassword: KeychainItemPassword {
+    
+    ///Query dictionary is needed to add all the required attributes.
+    
     var query: [String : Any]
+    
+    /// Initialize KeychainItemInternetPassword instance.
+    ///
+    /// - Parameters:
+    ///   - server: Value for the key kSecAttrServer.
+    ///   - accessGroup (optional): Value for the key kSecAttrAccessGroup.
     
     public init(server: String, accessGroup: String? = nil) {
         var query: [String: Any] = [:]
