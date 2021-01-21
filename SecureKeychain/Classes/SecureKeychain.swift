@@ -135,7 +135,7 @@ public class SecureKeychain {
     ///
     /// - Parameters:
     ///   - key: The key to restore from.
-    //    - reason (optional): The reason to authentificate in native alert (only for read biometric encrypted values).
+    ///   - reason (optional): The reason to authentificate in native alert (only for read biometric encrypted values).
     ///   - onCompletion: Callback that will be called after decryption ends. Callback will be called from DispatchQueue.global so be sure that you will handle result in correct way.
     
     public func restoreFromEncryptedKeychain(for key: String, reason: String? = nil, onCompletion: @escaping ((String?) -> Void) ) {

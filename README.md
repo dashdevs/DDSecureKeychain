@@ -25,21 +25,43 @@ pod 'SecureKeychain'
 
 ### Basics
 
-#### Saving
+#### Saving Application Password
+
+```swift
+var keychain = KeychainItemGenericPassword(service: "keychain.test")
+keychain["login"] = "password"
+```
+
+#### Saving Internet Password
+
+```swift
+var keychain = KeychainItemInternetPassword(server: "https://github.com")
+keychain["key"] = "3yh3dfgt-s55d-6sf3-rt33-feserte4345t"
+```
 
 #### Initialization Application Password
 
 ```swift
-let secureKeychain = SecureKeychain(keychain: KeychainItemGenericPassword(service: "keychain.tests.com"), accessibility: .whenUnlocked, authenticationPolicy: .biometryAny)
+var keychain = KeychainItemGenericPassword(service: "keychain.test")
+```
+#### or
+
+```swift
+let secureKeychain = SecureKeychain(keychain: KeychainItemGenericPassword(service: "keychain.test"), accessibility: .whenUnlocked, authenticationPolicy: .biometryAny)
 ```
 
 #### Initialization Internet Password
 
 ```swift
-let secureKeychain = SecureKeychain(keychain: KeychainItemInternetPassword(server: "https://keychain.tests.com"), accessibility: .whenUnlocked, authenticationPolicy: .biometryAny)
+var keychain = KeychainItemInternetPassword(server: "https://github.com")
+```
+#### or
+
+```swift
+let secureKeychain = SecureKeychain(keychain: KeychainItemInternetPassword(server: "https://github.com"), accessibility: .whenUnlocked, authenticationPolicy: .biometryAny)
 ```
 
-#### store using password protected
+#### Store using password protected
 
 ```swift
 do {
@@ -50,7 +72,7 @@ do {
 }
 ```
 
-#### store using biometric protected
+#### Store using biometric protected
 
 ```swift
 do {

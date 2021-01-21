@@ -14,7 +14,6 @@ public struct KeychainItemGenericPassword: KeychainItemPassword {
     
     var query: [String : Any]
     
-    
     /// Initialize KeychainItemGenericPassword instance.
     ///
     /// - Parameters:
@@ -32,17 +31,37 @@ public struct KeychainItemGenericPassword: KeychainItemPassword {
 
 extension KeychainItemGenericPassword: KeychainItem {
     
+    /// Returns all stored keys
+    
     public var allKeys: [String] { (try? restoreAllAccounts()) ?? [] }
     
+    /// This function deletes all items
+    
     public func clear() { try? removeAllAccounts() }
+    
+    /// Storing value to encrypted keychain.
+    ///
+    /// - Parameters:
+    ///   - value (optional): The value to store.
+    ///   - key: The key to store value to.
+    ///   - accessLevel (optional): Item access level.
     
     public func set(_ value: String?, for key: String, with accessLevel: KeychainItemAccessLevel?) throws {
         try save(value, for: key, with: accessLevel)
     }
     
+    /// Restoring a value from an encrypted keychain.
+    ///
+    /// - Parameters:
+    ///   - key: The key to store value to.
+    ///   - context: Represents an authentication context.
+    ///   - reason (optional): The reason to authentificate in native alert (only for read biometric encrypted values).
+    
     public func get(_ key: String, with context: LAContext?, for reason: String?) throws -> String {
         try restore(key, with: context, for: reason)
     }
+    
+    /// Saving and restoring values through the subscript.
     
     public subscript(key: String) -> String? {
         get { try? restore(key) }

@@ -10,7 +10,7 @@ import XCTest
 class KeychainPasswordTests: XCTestCase {
     private struct Constants {
         static let service = "keychain.tests"
-        static let server = "http://keychain.tests.com"
+        static let server = "https://keychain.tests.com"
         static let key = "TestKey"
         static let password = "TestPassword"
     }
