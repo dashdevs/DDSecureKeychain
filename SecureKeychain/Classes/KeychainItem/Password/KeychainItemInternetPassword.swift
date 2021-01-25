@@ -31,12 +31,10 @@ public struct KeychainItemInternetPassword: KeychainItemPassword {
 
 extension KeychainItemInternetPassword: KeychainItem {
     
-    /// Returns all stored keys
-    
+    /// Returns all stored keys.
     public var allKeys: [String] { (try? restoreAllAccounts()) ?? [] }
     
-    /// This function deletes all items
-    
+    /// This function deletes all items.
     public func clear() { try? removeAllAccounts() }
     
     /// Storing value to encrypted keychain.
@@ -62,7 +60,6 @@ extension KeychainItemInternetPassword: KeychainItem {
     }
     
     /// Saving and restoring values through the subscript.
-    
     public subscript(key: String) -> String? {
         get { try? restore(key) }
         set { try? save(newValue, for: key) }
