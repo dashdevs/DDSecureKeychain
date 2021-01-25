@@ -29,7 +29,7 @@ pod 'SecureKeychain'
 
 ```swift
 var keychain = KeychainItemGenericPassword(service: "keychain.test")
-keychain["login"] = "password"
+keychain["key"] = "password"
 ```
 
 #### Saving Internet Password
@@ -81,6 +81,84 @@ do {
     print("Error while saving to biometric protected keychain")
     return
 }
+```
+
+### Adding an item
+
+##### for String
+
+```swift
+keychain["key"] = "3yh3dfgt-s55d-6sf3-rt33-feserte4345t"
+```
+
+#### set method with error handling
+
+```swift
+let accessibility: KeychainItemAccessibility = .whenUnlocked
+let accessControl: [KeychainAccessControlViewModel] = [.biometryAny]
+let accessLevel: KeychainItemAccessLevel = (accessibility, accessControl.map { $0.value }, nil)
+
+do {
+    try keychain.set("password", for: "login", with: accessLevel)
+} catch {
+    print(error)
+}
+```
+
+### Obtaining an item
+
+##### for String
+
+```swift
+let token = keychain["key"]
+```
+
+##### get method
+
+```swift
+let token = try? keychain.get(loginTextField.text!, with: nil, for: nil)
+```
+
+#### restore all keys
+
+```swift
+let allKeys = keychain.allKeys
+```
+
+#### restore password protected value
+
+```swift
+let password = secureKeychain.restorePasswordProtectedValue(for: "PasswordProtectedKey", with: "Password")
+```
+
+#### restore value that is protected by biometrics
+
+```swift
+secureKeychain.restoreFromEncryptedKeychain(for: "BiometricKey") { value in
+    print(value)
+}
+```
+
+### Removing an item
+
+#### subscripting
+
+```swift
+keychain["key"] = nil
+```
+
+#### remove methods
+
+```swift
+keychain.clear()
+```
+
+```swift
+secureKeychain.clearKey("PasswordProtectedKey")
+```
+
+```swift
+secureKeychain.clearKey("BiometricKey")
 ```
 
 ## Author

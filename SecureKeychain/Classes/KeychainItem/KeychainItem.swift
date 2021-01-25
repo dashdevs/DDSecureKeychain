@@ -8,6 +8,8 @@ import LocalAuthentication
 
 public typealias KeychainItemAccessLevel = (accessibility: KeychainItemAccessibility, accessControl: [KeychainItemAccessControl]?, context: LAContext?)
 
+/// Describes the basic actions when interacting with the keychain
+
 public protocol KeychainItem {
     var allKeys: [String] { get }
     func clear()
