@@ -1,6 +1,6 @@
 # SecureKeychain
 
-KeychainAccess is a simple Swift wrapper for Keychain that works on iOS and OS X. Makes using Keychain APIs extremely easy and much more palatable to use in Swift.
+KeychainAccess is a simple Swift wrapper for Keychain that works on iOS and OS X. It makes using Keychain APIs extremely easier and much more comfortable using in Swift.
 
 ## Example
 
