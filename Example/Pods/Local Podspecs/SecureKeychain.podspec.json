@@ -1,8 +1,8 @@
 {
   "name": "SecureKeychain",
   "version": "0.1.0",
-  "summary": "A short description of SecureKeychain.",
-  "homepage": "https://dashdevs.com",
+  "summary": "Simple wrapper for securing your keychain",
+  "homepage": "https://www.dashdevs.com",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -11,16 +11,13 @@
     "dashdevs llc": "hello@dashdevs.com"
   },
   "source": {
-    "git": "https://github.com/kirill.u@itomy.ch/SecureKeychain.git",
+    "git": "https://bitbucket.org/itomych/securekeychain.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "SecureKeychain/Classes/**/*",
-  "dependencies": {
-    "KeychainAccess": [
-      "~> 3.1"
-    ]
-  }
+  "swift_versions": "4.2",
+  "source_files": "SecureKeychain/Classes/*",
+  "swift_version": "4.2"
 }

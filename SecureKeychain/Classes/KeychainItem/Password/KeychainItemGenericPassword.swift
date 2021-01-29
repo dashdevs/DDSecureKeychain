@@ -4,7 +4,7 @@
 //  Copyright © 2020 dashdevs.com. All rights reserved.
 //
 
-import Foundation
+import LocalAuthentication
 
 public struct KeychainItemGenericPassword: KeychainItemPassword {
     var query: [String : Any]
@@ -19,6 +19,7 @@ public struct KeychainItemGenericPassword: KeychainItemPassword {
 }
 
 extension KeychainItemGenericPassword: KeychainItem {
+    
     public var allKeys: [String] { (try? restoreAllAccounts()) ?? [] }
     
     public func clear() { try? removeAllAccounts() }
@@ -27,8 +28,12 @@ extension KeychainItemGenericPassword: KeychainItem {
         try save(value, for: key, with: accessLevel)
     }
     
+    public func get(_ key: String, with context: LAContext?, for reason: String?) throws -> String {
+        try restore(key, with: context, for: reason)
+    }
+    
     public subscript(key: String) -> String? {
-        get { return try? restore(for: key) }
+        get { try? restore(key) }
         set { try? save(newValue, for: key) }
     }
 }

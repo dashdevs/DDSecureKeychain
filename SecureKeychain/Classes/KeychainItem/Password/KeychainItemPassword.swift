@@ -4,12 +4,12 @@
 //  Copyright © 2020 dashdevs.com. All rights reserved.
 //
 
-import Foundation
+import LocalAuthentication
 
 protocol KeychainItemPassword: KeychainItemStatusHandler {
     var query: [String : Any] { get set }
     func save(_ password: String?, for account: String, with accessLevel: KeychainItemAccessLevel?) throws
-    func restore(for account: String) throws -> String
+    func restore(_ key: String, with context: LAContext?, for reason: String?) throws -> String
     func restoreAllAccounts() throws -> [String]
     func removeAllAccounts() throws
 }
@@ -28,6 +28,9 @@ extension KeychainItemPassword {
                                                              &error)
                 if let error = error?.takeRetainedValue() { throw error }
                 query[kSecAttrAccessControl as String] = access
+                if let context = accessLevel.context {
+                    query[kSecUseAuthenticationContext as String] = context
+                }
             } else {
                 query[kSecAttrAccessible as String] = accessLevel.accessibility.value
             }
@@ -59,11 +62,20 @@ extension KeychainItemPassword {
         }
     }
     
-    func restore(for account: String) throws -> String {
+    func restore(_ key: String, with context: LAContext? = nil, for reason: String? = nil) throws -> String {
         var query = self.query
-        query[kSecAttrAccount as String] = account
+        query[kSecAttrAccount as String] = key
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         query[kSecReturnData as String] = true
+        
+        if let context = context {
+            query[kSecUseAuthenticationContext as String] = context
+        }
+        
+        if let reason = reason {
+            query[kSecUseOperationPrompt as String] = reason
+        }
+        
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
         try handle(status)
