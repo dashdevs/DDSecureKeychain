@@ -19,7 +19,11 @@ class PasswordViewController: UIViewController {
         let inputView = UIPickerView()
         inputView.delegate = self
         inputView.dataSource = self
-        inputView.backgroundColor = .white
+        if #available(iOS 13.0, *) {
+            inputView.backgroundColor = .systemBackground
+        } else {
+            inputView.backgroundColor = .white
+        }
         return inputView
     }()
     lazy var accessibilityInputAccessoryView: UIView = {
