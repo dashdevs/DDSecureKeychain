@@ -6,6 +6,8 @@
 
 import Foundation
 
+/// Authentication Policy for keychain items.
+
 public enum KeychainItemAccessControl {
     // Constraints
     case biometryAny
