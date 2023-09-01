@@ -1,3 +1,8 @@
+1.0.0 / 2023-09-01
+==================
+
+  * Added SecureKeychain items
+  * Updated exmaple app
 
 n.n.n / 2019-04-05
 ==================
