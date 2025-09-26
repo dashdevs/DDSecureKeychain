@@ -168,27 +168,23 @@ public class SecureKeychain {
         let status = SecItemCopyMatching(query as CFDictionary, &item)
 
         if withoutAuthenticationUI {
-#if os(iOS) || os(watchOS) || os(tvOS)
+    #if os(iOS) || os(watchOS) || os(tvOS)
             if #available(iOS 9.0, *) {
                 query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUIFail
             } else {
                 query[kSecUseNoAuthenticationUI as String] = kCFBooleanTrue
             }
-#else
+    #else
             if #available(macOS 10.11, *) {
-                if let authenticationUI = options.authenticationUI {
-                    query[kSecUseAuthenticationUI] = authenticationUI.rawValue
-                } else {
-                    query[kSecUseAuthenticationUI] = UseAuthenticationUIFail
-                }
+                query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUIFail
             } else if #available(macOS 10.10, *) {
-                query[kSecUseNoAuthenticationUI] = kCFBooleanTrue
+                query[kSecUseNoAuthenticationUI as String] = kCFBooleanTrue
             }
-#endif
+    #endif
         } else {
             if #available(iOS 9.0, macOS 10.11, *) {
                 query[kSecUseAuthenticationUI as String] = kCFBooleanTrue
-            }
+             }
         }
         
         switch status {
