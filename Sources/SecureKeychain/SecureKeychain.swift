@@ -170,17 +170,19 @@ public class SecureKeychain {
         if withoutAuthenticationUI {
 #if os(iOS) || os(watchOS) || os(tvOS)
             if #available(iOS 9.0, *) {
-                query[kSecUseAuthenticationUI as String] = kCFBooleanFalse
+                query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUIFail
+            } else {
+                query[kSecUseNoAuthenticationUI as String] = kCFBooleanTrue
             }
 #else
             if #available(macOS 10.11, *) {
                 if let authenticationUI = options.authenticationUI {
-                    query[UseAuthenticationUI] = authenticationUI.rawValue
+                    query[kSecUseAuthenticationUI] = authenticationUI.rawValue
                 } else {
-                    query[UseAuthenticationUI] = UseAuthenticationUIFail
+                    query[kSecUseAuthenticationUI] = UseAuthenticationUIFail
                 }
             } else if #available(macOS 10.10, *) {
-                query[UseNoAuthenticationUI] = kCFBooleanTrue
+                query[kSecUseNoAuthenticationUI] = kCFBooleanTrue
             }
 #endif
         } else {
