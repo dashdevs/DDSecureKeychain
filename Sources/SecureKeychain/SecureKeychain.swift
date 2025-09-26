@@ -164,29 +164,27 @@ public class SecureKeychain {
             query[kSecUseAuthenticationContext as String] = reason
         }
         
-        var item: CFTypeRef?
-        let status = SecItemCopyMatching(query as CFDictionary, &item)
-
         if withoutAuthenticationUI {
-    #if os(iOS) || os(watchOS) || os(tvOS)
+#if os(iOS) || os(watchOS) || os(tvOS)
             if #available(iOS 9.0, *) {
                 query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUIFail
             } else {
                 query[kSecUseNoAuthenticationUI as String] = kCFBooleanTrue
             }
-    #else
+#else
             if #available(macOS 10.11, *) {
                 query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUIFail
             } else if #available(macOS 10.10, *) {
                 query[kSecUseNoAuthenticationUI as String] = kCFBooleanTrue
             }
-    #endif
+#endif
         } else {
             if #available(iOS 9.0, macOS 10.11, *) {
                 query[kSecUseAuthenticationUI as String] = kCFBooleanTrue
-             }
+            }
         }
         
+        let status = SecItemCopyMatching(query as CFDictionary, nil)
         switch status {
         case errSecSuccess:
             return true
