@@ -9,6 +9,7 @@ import LocalAuthentication
 public enum SecureKeychainError: Error {
     case accessibilityNotSpecified
     case authenticationPolicyNotSpecified
+    case unexpected(OSStatus)
 }
 
 public class SecureKeychain {
@@ -150,53 +151,32 @@ public class SecureKeychain {
         }
     }
     
-    public func contains(_ key: String, reason: String? = nil, context: LAContext? = nil, withoutAuthenticationUI: Bool = false) throws -> Bool {
-        var query = [:] as [String: Any]
-        query[kSecAttrAccount as String] = key
-        query[kSecMatchLimit as String] = kSecMatchLimitOne
-        query[kSecReturnData as String] = true
-        
-        if let context = context {
-            query[kSecUseAuthenticationContext as String] = context
-        }
-        
-        if let reason = reason {
-            query[kSecUseAuthenticationContext as String] = reason
-        }
-        
-        if withoutAuthenticationUI {
-#if os(iOS) || os(watchOS) || os(tvOS)
-            if #available(iOS 9.0, *) {
-                query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUIFail
-            } else {
-                query[kSecUseNoAuthenticationUI as String] = kCFBooleanTrue
-            }
-#else
-            if #available(macOS 10.11, *) {
-                query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUIFail
-            } else if #available(macOS 10.10, *) {
-                query[kSecUseNoAuthenticationUI as String] = kCFBooleanTrue
-            }
-#endif
-        } else {
-            if #available(iOS 9.0, macOS 10.11, *) {
-                query[kSecUseAuthenticationUI as String] = kCFBooleanTrue
-            }
-        }
-        
+    /// Checks if a keychain item exists for the given account
+    /// Returns `true` if the item exists, even if protected by biometry, `false` if not.
+    ///
+    /// - Parameters:
+    ///   - key: The account identifier of the keychain item.
+    /// - Returns: `true` if the item exists, `false` otherwise.
+    /// - Throws: `SecureKeychainError.unexpected` for unexpected keychain errors.
+
+    public func containsItem(account key: String) throws -> Bool {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: key,
+            kSecMatchLimit as String: kSecMatchLimitOne,
+            kSecReturnData as String: kCFBooleanFalse as Any,
+            kSecUseAuthenticationUI as String: kSecUseAuthenticationUIFail
+        ]
+
         let status = SecItemCopyMatching(query as CFDictionary, nil)
+
         switch status {
-        case errSecSuccess:
+        case errSecSuccess, errSecInteractionNotAllowed:
             return true
-        case errSecInteractionNotAllowed:
-            if withoutAuthenticationUI {
-                return true
-            }
-            return false
         case errSecItemNotFound:
             return false
         default:
-            return false
+            throw SecureKeychainError.unexpected(status)
         }
     }
     
